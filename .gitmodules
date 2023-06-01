@@ -1,0 +1,45 @@
+[submodule "contiki-ng/tools/cc2538-bsl"]
+	path = contiki-ng/tools/cc2538-bsl
+	url = https://github.com/JelmerT/cc2538-bsl.git
+[submodule "contiki-ng/arch/cpu/cc26xx-cc13xx/lib/cc26xxware"]
+	path = contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc26xxware
+	url = https://github.com/contiki-ng/cc26xxware.git
+[submodule "contiki-ng/arch/cpu/cc26xx-cc13xx/lib/cc13xxware"]
+	path = contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc13xxware
+	url = https://github.com/contiki-ng/cc13xxware.git
+[submodule "contiki-ng/tools/sensniff"]
+	path = contiki-ng/tools/sensniff
+	url = https://github.com/g-oikonomou/sensniff.git
+[submodule "contiki-ng/tools/cooja"]
+	path = contiki-ng/tools/cooja
+	url = https://github.com/contiki-ng/cooja.git
+[submodule "contiki-ng/os/net/security/tinydtls"]
+	path = contiki-ng/os/net/security/tinydtls
+	url = https://github.com/contiki-ng/tinydtls.git
+[submodule "contiki-ng/tests/18-coap-lwm2m/example-lwm2m-standalone"]
+	path = contiki-ng/tests/18-coap-lwm2m/example-lwm2m-standalone
+	url = https://github.com/contiki-ng/example-lwm2m-standalone.git
+[submodule "contiki-ng/tools/motelist"]
+	path = contiki-ng/tools/motelist
+	url = https://github.com/contiki-ng/motelist
+[submodule "contiki-ng/arch/cpu/simplelink-cc13xx-cc26xx/lib/coresdk_cc13xx_cc26xx"]
+	path = contiki-ng/arch/cpu/simplelink-cc13xx-cc26xx/lib/coresdk_cc13xx_cc26xx
+	url = https://github.com/contiki-ng/coresdk_cc13xx_cc26xx.git
+[submodule "contiki-ng/arch/cpu/cc26xx-cc13xx/lib/cc2640r2-sdk"]
+	path = contiki-ng/arch/cpu/cc26x0-cc13x0/lib/cc2640r2-sdk
+	url = https://github.com/contiki-ng/cc2640r2-sdk.git
+[submodule "contiki-ng/arch/cpu/nrf52840/lib/nrf52-sdk"]
+	path = contiki-ng/arch/cpu/nrf52840/lib/nrf52-sdk
+	url = https://github.com/contiki-ng/nrf-sdk-contiki-ng.git
+[submodule "contiki-ng/arch/cpu/arm/CMSIS"]
+	path = contiki-ng/arch/cpu/arm/CMSIS
+	url = https://github.com/ARM-software/CMSIS_5.git
+[submodule "contiki-ng/arch/cpu/nrf/lib/nrfx"]
+	path = contiki-ng/arch/cpu/nrf/lib/nrfx
+	url = https://github.com/NordicSemiconductor/nrfx.git
+[submodule "contiki-ng/arch/cpu/nrf/lib/tinyusb"]
+	path = contiki-ng/arch/cpu/nrf/lib/tinyusb
+	url = https://github.com/hathach/tinyusb_src.git
+[submodule "contiki-ng/arch/cpu/gecko/lib/gecko_sdk"]
+	path = contiki-ng/arch/cpu/gecko/lib/gecko_sdk
+	url = https://github.com/SiliconLabs/gecko_sdk.git
