@@ -1,3 +1,0 @@
-[submodule "contiki-ng"]
-	path = contiki-ng
-	url = https://github.com/contiki-ng/contiki-ng.git
