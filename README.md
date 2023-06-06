@@ -5,5 +5,5 @@
 ## Deploy & Run
 
 ```bash
-./deployNRun
+src$ ./deployNRun
 ```
