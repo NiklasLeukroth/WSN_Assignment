@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo ake TARGET=zoul BOARD=remote-revb main.upload login
