@@ -1,131 +1,226 @@
 build/zoul/remote-revb/obj/platform.o: \
- ../../arch/platform/zoul/./platform.c ../../os/contiki.h \
- ../../arch/platform/zoul/./contiki-conf.h \
- ../../arch/cpu/cc2538/./cc2538-def.h \
- ../../arch/cpu/cc2538/../arm/cortex-m/cm3/cm3-def.h \
- ../../arch/cpu/cc2538/../arm/./arm-def.h \
- ../../arch/platform/zoul/remote-revb/board.h \
- ../../arch/cpu/cc2538/./dev/gpio.h ../../os/dev/gpio-hal.h \
- ../../arch/cpu/cc2538/./dev/gpio-hal-arch.h \
- ../../arch/cpu/cc2538/./reg.h ../../arch/cpu/cc2538/./dev/nvic.h \
- ../../arch/cpu/cc2538/./cc2538_cm3.h \
- ../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/core_cm3.h \
- ../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_version.h \
- ../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_compiler.h \
- ../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_gcc.h \
- ../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/mpu_armv7.h \
- ../../arch/cpu/cc2538/./cc2538-conf.h ../../os/contiki-default-conf.h \
- ../../os/sys/process.h ../../os/sys/pt.h ../../os/sys/lc.h \
- ../../os/sys/lc-switch.h ../../os/sys/cc.h ../../os/sys/cc-gcc.h \
- ../../os/sys/autostart.h ../../os/sys/process.h ../../os/sys/timer.h \
- ../../os/sys/clock.h ../../os/sys/ctimer.h ../../os/sys/etimer.h \
- ../../os/sys/etimer.h ../../os/sys/rtimer.h ../../os/dev/watchdog.h \
- ../../arch/cpu/cc2538/./rtimer-arch.h \
- ../../arch/cpu/cc2538/./dev/gptimer.h ../../os/sys/pt.h \
- ../../os/sys/clock.h ../../os/dev/leds.h \
- ../../arch/cpu/cc2538/./dev/uart.h ../../os/dev/button-sensor.h \
- ../../os/lib/sensors.h ../../os/dev/serial-line.h ../../os/dev/slip.h \
- ../../arch/cpu/cc2538/./dev/cc2538-rf.h ../../os/dev/radio.h \
- ../../arch/cpu/cc2538/./dev/rfcore.h \
- ../../arch/cpu/cc2538/./dev/rfcore-ffsm.h \
- ../../arch/cpu/cc2538/./dev/rfcore-xreg.h \
- ../../arch/cpu/cc2538/./dev/rfcore-sfr.h \
- ../../arch/cpu/cc2538/./dev/ana-regs.h \
- ../../arch/cpu/cc2538/./dev/udma.h ../../arch/cpu/cc2538/./dev/crypto.h \
- ../../arch/cpu/cc2538/./dev/sys-ctrl.h \
- ../../arch/platform/zoul/./dev/rtcc.h ../../arch/cpu/cc2538/dev/i2c.h \
- ../../arch/cpu/cc2538/dev/sys-ctrl.h ../../arch/cpu/cc2538/dev/gpio.h \
- ../../arch/cpu/cc2538/dev/ioc.h ../../os/sys/clock.h \
- ../../os/dev/button-hal.h ../../os/sys/ctimer.h \
- ../../arch/cpu/cc2538/./usb/usb-serial.h ../../os/lib/random.h \
- ../../os/net/netstack.h ../../os/net/mac/mac.h \
- ../../os/net/mac/framer/framer.h ../../os/net/linkaddr.h \
- ../../os/net/mac/framer/frame802154.h ../../os/sys/platform.h \
- ../../arch/cpu/cc2538/./soc.h ../../arch/cpu/cc2538/./cpu.h \
- ../../arch/cpu/cc2538/./cc2538_cm3.h ../../arch/cpu/cc2538/./ieee-addr.h \
- ../../arch/cpu/cc2538/./lpm.h ../../os/sys/rtimer.h ../../os/sys/log.h \
- ../../os/sys/log-conf.h ../../os/net/ipv6/uip.h \
- ../../os/net/ipv6/uipopt.h ../../os/net/ipv6/uipbuf.h \
- ../../os/net/ipv6/tcpip.h
-../../os/contiki.h:
-../../arch/platform/zoul/./contiki-conf.h:
-../../arch/cpu/cc2538/./cc2538-def.h:
-../../arch/cpu/cc2538/../arm/cortex-m/cm3/cm3-def.h:
-../../arch/cpu/cc2538/../arm/./arm-def.h:
-../../arch/platform/zoul/remote-revb/board.h:
-../../arch/cpu/cc2538/./dev/gpio.h:
-../../os/dev/gpio-hal.h:
-../../arch/cpu/cc2538/./dev/gpio-hal-arch.h:
-../../arch/cpu/cc2538/./reg.h:
-../../arch/cpu/cc2538/./dev/nvic.h:
-../../arch/cpu/cc2538/./cc2538_cm3.h:
-../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/core_cm3.h:
-../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_version.h:
-../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_compiler.h:
-../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_gcc.h:
-../../arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/mpu_armv7.h:
-../../arch/cpu/cc2538/./cc2538-conf.h:
-../../os/contiki-default-conf.h:
-../../os/sys/process.h:
-../../os/sys/pt.h:
-../../os/sys/lc.h:
-../../os/sys/lc-switch.h:
-../../os/sys/cc.h:
-../../os/sys/cc-gcc.h:
-../../os/sys/autostart.h:
-../../os/sys/process.h:
-../../os/sys/timer.h:
-../../os/sys/clock.h:
-../../os/sys/ctimer.h:
-../../os/sys/etimer.h:
-../../os/sys/etimer.h:
-../../os/sys/rtimer.h:
-../../os/dev/watchdog.h:
-../../arch/cpu/cc2538/./rtimer-arch.h:
-../../arch/cpu/cc2538/./dev/gptimer.h:
-../../os/sys/pt.h:
-../../os/sys/clock.h:
-../../os/dev/leds.h:
-../../arch/cpu/cc2538/./dev/uart.h:
-../../os/dev/button-sensor.h:
-../../os/lib/sensors.h:
-../../os/dev/serial-line.h:
-../../os/dev/slip.h:
-../../arch/cpu/cc2538/./dev/cc2538-rf.h:
-../../os/dev/radio.h:
-../../arch/cpu/cc2538/./dev/rfcore.h:
-../../arch/cpu/cc2538/./dev/rfcore-ffsm.h:
-../../arch/cpu/cc2538/./dev/rfcore-xreg.h:
-../../arch/cpu/cc2538/./dev/rfcore-sfr.h:
-../../arch/cpu/cc2538/./dev/ana-regs.h:
-../../arch/cpu/cc2538/./dev/udma.h:
-../../arch/cpu/cc2538/./dev/crypto.h:
-../../arch/cpu/cc2538/./dev/sys-ctrl.h:
-../../arch/platform/zoul/./dev/rtcc.h:
-../../arch/cpu/cc2538/dev/i2c.h:
-../../arch/cpu/cc2538/dev/sys-ctrl.h:
-../../arch/cpu/cc2538/dev/gpio.h:
-../../arch/cpu/cc2538/dev/ioc.h:
-../../os/sys/clock.h:
-../../os/dev/button-hal.h:
-../../os/sys/ctimer.h:
-../../arch/cpu/cc2538/./usb/usb-serial.h:
-../../os/lib/random.h:
-../../os/net/netstack.h:
-../../os/net/mac/mac.h:
-../../os/net/mac/framer/framer.h:
-../../os/net/linkaddr.h:
-../../os/net/mac/framer/frame802154.h:
-../../os/sys/platform.h:
-../../arch/cpu/cc2538/./soc.h:
-../../arch/cpu/cc2538/./cpu.h:
-../../arch/cpu/cc2538/./cc2538_cm3.h:
-../../arch/cpu/cc2538/./ieee-addr.h:
-../../arch/cpu/cc2538/./lpm.h:
-../../os/sys/rtimer.h:
-../../os/sys/log.h:
-../../os/sys/log-conf.h:
-../../os/net/ipv6/uip.h:
-../../os/net/ipv6/uipopt.h:
-../../os/net/ipv6/uipbuf.h:
-../../os/net/ipv6/tcpip.h:
+ ../contiki-ng/arch/platform/zoul/./platform.c ../contiki-ng/os/contiki.h \
+ ../contiki-ng/arch/platform/zoul/./contiki-conf.h \
+ ../contiki-ng/arch/cpu/cc2538/./cc2538-def.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/cortex-m/cm3/cm3-def.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/./arm-def.h \
+ ../contiki-ng/arch/platform/zoul/remote-revb/board.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/gpio.h \
+ ../contiki-ng/os/dev/gpio-hal.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/gpio-hal-arch.h \
+ ../contiki-ng/arch/cpu/cc2538/./reg.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/nvic.h \
+ ../contiki-ng/arch/cpu/cc2538/./cc2538_cm3.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/core_cm3.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_version.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_compiler.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_gcc.h \
+ ../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/mpu_armv7.h \
+ ../contiki-ng/arch/cpu/cc2538/./cc2538-conf.h \
+ ../contiki-ng/os/contiki-default-conf.h ../contiki-ng/os/sys/process.h \
+ ../contiki-ng/os/sys/pt.h ../contiki-ng/os/sys/lc.h \
+ ../contiki-ng/os/sys/lc-switch.h ../contiki-ng/os/sys/cc.h \
+ ../contiki-ng/os/sys/cc-gcc.h ../contiki-ng/os/sys/autostart.h \
+ ../contiki-ng/os/sys/process.h ../contiki-ng/os/sys/timer.h \
+ ../contiki-ng/os/sys/clock.h ../contiki-ng/os/sys/ctimer.h \
+ ../contiki-ng/os/sys/etimer.h ../contiki-ng/os/sys/etimer.h \
+ ../contiki-ng/os/sys/rtimer.h ../contiki-ng/os/dev/watchdog.h \
+ ../contiki-ng/arch/cpu/cc2538/./rtimer-arch.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/gptimer.h ../contiki-ng/os/sys/pt.h \
+ ../contiki-ng/os/sys/clock.h ../contiki-ng/os/dev/leds.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/uart.h \
+ ../contiki-ng/os/dev/button-sensor.h ../contiki-ng/os/lib/sensors.h \
+ ../contiki-ng/os/dev/serial-line.h ../contiki-ng/os/dev/slip.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/cc2538-rf.h \
+ ../contiki-ng/os/dev/radio.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/rfcore.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/rfcore-ffsm.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/rfcore-xreg.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/rfcore-sfr.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/ana-regs.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/udma.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/crypto.h \
+ ../contiki-ng/arch/cpu/cc2538/./dev/sys-ctrl.h \
+ ../contiki-ng/arch/platform/zoul/./dev/rtcc.h \
+ ../contiki-ng/arch/cpu/cc2538/dev/i2c.h \
+ ../contiki-ng/arch/cpu/cc2538/dev/sys-ctrl.h \
+ ../contiki-ng/arch/cpu/cc2538/dev/gpio.h \
+ ../contiki-ng/arch/cpu/cc2538/dev/ioc.h ../contiki-ng/os/sys/clock.h \
+ ../contiki-ng/os/dev/button-hal.h ../contiki-ng/os/sys/ctimer.h \
+ ../contiki-ng/arch/cpu/cc2538/./usb/usb-serial.h \
+ ../contiki-ng/os/lib/random.h ../contiki-ng/os/net/netstack.h \
+ ../contiki-ng/os/net/mac/mac.h ../contiki-ng/os/net/mac/framer/framer.h \
+ ../contiki-ng/os/net/linkaddr.h \
+ ../contiki-ng/os/net/mac/framer/frame802154.h \
+ ../contiki-ng/os/sys/platform.h ../contiki-ng/arch/cpu/cc2538/./soc.h \
+ ../contiki-ng/arch/cpu/cc2538/./cpu.h \
+ ../contiki-ng/arch/cpu/cc2538/./cc2538_cm3.h \
+ ../contiki-ng/arch/cpu/cc2538/./ieee-addr.h \
+ ../contiki-ng/arch/cpu/cc2538/./lpm.h ../contiki-ng/os/sys/rtimer.h \
+ ../contiki-ng/os/sys/log.h ../contiki-ng/os/sys/log-conf.h \
+ ../contiki-ng/os/net/ipv6/uip.h ../contiki-ng/os/net/ipv6/uipopt.h \
+ ../contiki-ng/os/net/ipv6/uipbuf.h ../contiki-ng/os/net/ipv6/tcpip.h
+
+../contiki-ng/os/contiki.h:
+
+../contiki-ng/arch/platform/zoul/./contiki-conf.h:
+
+../contiki-ng/arch/cpu/cc2538/./cc2538-def.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/cortex-m/cm3/cm3-def.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/./arm-def.h:
+
+../contiki-ng/arch/platform/zoul/remote-revb/board.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/gpio.h:
+
+../contiki-ng/os/dev/gpio-hal.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/gpio-hal-arch.h:
+
+../contiki-ng/arch/cpu/cc2538/./reg.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/nvic.h:
+
+../contiki-ng/arch/cpu/cc2538/./cc2538_cm3.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/core_cm3.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_version.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_compiler.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/cmsis_gcc.h:
+
+../contiki-ng/arch/cpu/cc2538/../arm/CMSIS/CMSIS/Core/Include/mpu_armv7.h:
+
+../contiki-ng/arch/cpu/cc2538/./cc2538-conf.h:
+
+../contiki-ng/os/contiki-default-conf.h:
+
+../contiki-ng/os/sys/process.h:
+
+../contiki-ng/os/sys/pt.h:
+
+../contiki-ng/os/sys/lc.h:
+
+../contiki-ng/os/sys/lc-switch.h:
+
+../contiki-ng/os/sys/cc.h:
+
+../contiki-ng/os/sys/cc-gcc.h:
+
+../contiki-ng/os/sys/autostart.h:
+
+../contiki-ng/os/sys/process.h:
+
+../contiki-ng/os/sys/timer.h:
+
+../contiki-ng/os/sys/clock.h:
+
+../contiki-ng/os/sys/ctimer.h:
+
+../contiki-ng/os/sys/etimer.h:
+
+../contiki-ng/os/sys/etimer.h:
+
+../contiki-ng/os/sys/rtimer.h:
+
+../contiki-ng/os/dev/watchdog.h:
+
+../contiki-ng/arch/cpu/cc2538/./rtimer-arch.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/gptimer.h:
+
+../contiki-ng/os/sys/pt.h:
+
+../contiki-ng/os/sys/clock.h:
+
+../contiki-ng/os/dev/leds.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/uart.h:
+
+../contiki-ng/os/dev/button-sensor.h:
+
+../contiki-ng/os/lib/sensors.h:
+
+../contiki-ng/os/dev/serial-line.h:
+
+../contiki-ng/os/dev/slip.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/cc2538-rf.h:
+
+../contiki-ng/os/dev/radio.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/rfcore.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/rfcore-ffsm.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/rfcore-xreg.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/rfcore-sfr.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/ana-regs.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/udma.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/crypto.h:
+
+../contiki-ng/arch/cpu/cc2538/./dev/sys-ctrl.h:
+
+../contiki-ng/arch/platform/zoul/./dev/rtcc.h:
+
+../contiki-ng/arch/cpu/cc2538/dev/i2c.h:
+
+../contiki-ng/arch/cpu/cc2538/dev/sys-ctrl.h:
+
+../contiki-ng/arch/cpu/cc2538/dev/gpio.h:
+
+../contiki-ng/arch/cpu/cc2538/dev/ioc.h:
+
+../contiki-ng/os/sys/clock.h:
+
+../contiki-ng/os/dev/button-hal.h:
+
+../contiki-ng/os/sys/ctimer.h:
+
+../contiki-ng/arch/cpu/cc2538/./usb/usb-serial.h:
+
+../contiki-ng/os/lib/random.h:
+
+../contiki-ng/os/net/netstack.h:
+
+../contiki-ng/os/net/mac/mac.h:
+
+../contiki-ng/os/net/mac/framer/framer.h:
+
+../contiki-ng/os/net/linkaddr.h:
+
+../contiki-ng/os/net/mac/framer/frame802154.h:
+
+../contiki-ng/os/sys/platform.h:
+
+../contiki-ng/arch/cpu/cc2538/./soc.h:
+
+../contiki-ng/arch/cpu/cc2538/./cpu.h:
+
+../contiki-ng/arch/cpu/cc2538/./cc2538_cm3.h:
+
+../contiki-ng/arch/cpu/cc2538/./ieee-addr.h:
+
+../contiki-ng/arch/cpu/cc2538/./lpm.h:
+
+../contiki-ng/os/sys/rtimer.h:
+
+../contiki-ng/os/sys/log.h:
+
+../contiki-ng/os/sys/log-conf.h:
+
+../contiki-ng/os/net/ipv6/uip.h:
+
+../contiki-ng/os/net/ipv6/uipopt.h:
+
+../contiki-ng/os/net/ipv6/uipbuf.h:
+
+../contiki-ng/os/net/ipv6/tcpip.h:
