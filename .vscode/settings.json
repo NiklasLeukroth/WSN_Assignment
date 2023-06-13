@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "uip-ds6-nbr.h": "c",
+        "uip.h": "c",
+        "uipbuf.h": "c",
+        "uipopt.h": "c",
+        "linkaddr.h": "c",
+        "simple-udp.h": "c",
+        "random.h": "c",
+        "netstack.h": "c",
+        "routing.h": "c"
+    }
+}
