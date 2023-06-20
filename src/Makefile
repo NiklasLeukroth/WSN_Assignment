@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = WSNI
+CONTIKI_PROJECT = transmitter receiver
 all: $(CONTIKI_PROJECT)
 
 CONTIKI = ../contiki-ng
