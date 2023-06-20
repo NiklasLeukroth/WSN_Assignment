@@ -4,6 +4,8 @@
 #include "net/netstack.h"
 #include "net/ipv6/simple-udp.h"
 
+#include "../wsn_global.h"
+
 #define PROCESS_EVENT_RECEIVER 101
 
 // just for logging / printing
@@ -23,13 +25,23 @@ static void udp_rx_callback(struct simple_udp_connection *c,
          uint16_t sender_port,
          const uip_ipaddr_t *receiver_addr,
          uint16_t receiver_port,
-         const uint8_t *data,
+         const data_package *data,
          uint16_t datalen)
 {
-
-  LOG_INFO("Received response '%.*s' from ", datalen, (char *) data);
   LOG_INFO_6ADDR(sender_addr);
+  LOG_INFO(" => ");
   LOG_INFO_("\n");
+
+  if (data->ack == 0x00) {
+    LOG_INFO("Received data package:\n\tSEQ: %u\n\tPAYLOAD: %.*s" , data->seq, datalen-2, data->payload);
+
+    short_package acknowlegement = {0xFF, data->seq};
+
+    LOG_INFO("Sending Acknowlegement with SEQ %i.\n", data->seq);
+    simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
+  } else {
+    LOG_INFO("Received Acknowlegement with SEQ %i.\n", data->seq);
+  }
 }
 
 PROCESS_THREAD(receiver_process, ev, data)
@@ -42,7 +54,7 @@ PROCESS_THREAD(receiver_process, ev, data)
 
     LOG_INFO("registering UDP connection\n");
     NETSTACK_ROUTING.root_start();
-    simple_udp_register(&udp_conn, RECEIVER_PORT, NULL, SENDER_PORT, udp_rx_callback);
+    simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
     LOG_INFO("registered UDP connection\n");
 
     // while(1) {

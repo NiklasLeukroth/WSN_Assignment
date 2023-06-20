@@ -1,3 +1,4 @@
 #!/bin/bash
 
+clear
 sudo make TARGET=zoul BOARD=remote-revb main.upload login
