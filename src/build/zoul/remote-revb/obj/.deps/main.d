@@ -37,8 +37,8 @@ build/zoul/remote-revb/obj/main.o: main.c ../contiki-ng/os/contiki.h \
  ../contiki-ng/os/net/mac/framer/framer.h \
  ../contiki-ng/os/net/ipv6/uip-ds6-route.h ../contiki-ng/os/lib/list.h \
  ../contiki-ng/os/net/ipv6/uip-sr.h \
- ../contiki-ng/os/net/ipv6/simple-udp.h ../contiki-ng/os/sys/log.h \
- ../contiki-ng/os/sys/log-conf.h
+ ../contiki-ng/os/net/ipv6/simple-udp.h receiver/../wsn_global.h \
+ ../contiki-ng/os/sys/log.h ../contiki-ng/os/sys/log-conf.h
 ../contiki-ng/os/contiki.h:
 ../contiki-ng/arch/platform/zoul/./contiki-conf.h:
 ../contiki-ng/arch/cpu/cc2538/./cc2538-def.h:
@@ -96,5 +96,6 @@ receiver/receiver_process.c:
 ../contiki-ng/os/lib/list.h:
 ../contiki-ng/os/net/ipv6/uip-sr.h:
 ../contiki-ng/os/net/ipv6/simple-udp.h:
+receiver/../wsn_global.h:
 ../contiki-ng/os/sys/log.h:
 ../contiki-ng/os/sys/log-conf.h:

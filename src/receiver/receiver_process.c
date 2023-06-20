@@ -20,27 +20,34 @@ static struct simple_udp_connection udp_conn;
 
 PROCESS(receiver_process, "receiver process");
 
+void acknowlege(char seq, struct simple_udp_connection *c, const uip_ipaddr_t *sender_addr) {
+    short_package acknowlegement = {0xFF, seq};
+
+    printf("Sending Acknowlegement with SEQ %i.\n", seq);
+    simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
+}
+
 static void udp_rx_callback(struct simple_udp_connection *c,
          const uip_ipaddr_t *sender_addr,
          uint16_t sender_port,
          const uip_ipaddr_t *receiver_addr,
          uint16_t receiver_port,
-         const data_package *data,
+         const uint8_t *data,
          uint16_t datalen)
 {
+  data_package *pck = (data_package *) data;
   LOG_INFO_6ADDR(sender_addr);
-  LOG_INFO(" => ");
-  LOG_INFO_("\n");
+  printf(" => \n");
 
-  if (data->ack == 0x00) {
-    LOG_INFO("Received data package:\n\tSEQ: %u\n\tPAYLOAD: %.*s" , data->seq, datalen-2, data->payload);
+  if (pck->ack == 0x00) {
+    print_data_package(pck, datalen);
 
-    short_package acknowlegement = {0xFF, data->seq};
+    short_package acknowlegement = {0xFF, pck->seq};
 
-    LOG_INFO("Sending Acknowlegement with SEQ %i.\n", data->seq);
+    printf("Sending Acknowlegement with SEQ %i.\n", pck->seq);
     simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
   } else {
-    LOG_INFO("Received Acknowlegement with SEQ %i.\n", data->seq);
+    printf("Received Acknowlegement with SEQ %i.\n", pck->seq);
   }
 }
 
