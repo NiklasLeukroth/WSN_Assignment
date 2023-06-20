@@ -1,6 +1,6 @@
 
-#include "transmit_process.c"
-#include "transmitter_udp_connect.c"
+#include "transmitter/transmit_process.c"
+#include "transmitter/transmitter_udp_connect.c"
 #include "wsn_global.h"
 
 #include <stdio.h>

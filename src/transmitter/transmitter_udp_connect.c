@@ -1,7 +1,7 @@
-#include "../include/transmitter.h"
+#include "../../include/transmitter.h"
 #include "net/netstack.h"
 #include "net/routing/routing.h"
-#include "wsn_global.h"
+#include "../wsn_global.h"
 
 static bool udp_connection_established = false;
 /*---------------------------------------------------------------------------*/

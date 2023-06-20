@@ -4,7 +4,7 @@
 #include "net/netstack.h"
 #include "net/ipv6/simple-udp.h"
 
-#include "../wsn_global.h"
+#include "wsn_global.h"
 
 #define PROCESS_EVENT_RECEIVER 101
 
@@ -18,7 +18,9 @@
 #define SENDER_PORT	5678
 static struct simple_udp_connection udp_conn;
 
+
 PROCESS(receiver_process, "receiver process");
+AUTOSTART_PROCESSES(&receiver_process);
 
 void acknowlege(char seq, struct simple_udp_connection *c, const uip_ipaddr_t *sender_addr) {
     short_package acknowlegement = {0xFF, seq};
