@@ -1,4 +1,5 @@
 #include "../include/transmitter.h"
+#include <stdlib.h>
 
 /*---------------------------------------------------------------------------*/
 PROCESS(transmit_process, "transmit_process");
@@ -6,11 +7,10 @@ PROCESS(transmit_process, "transmit_process");
 
 PROCESS_THREAD(transmit_process, ev, data)
 {
-	static char str[32];
 	PROCESS_BEGIN();
-	snprintf(str, sizeof(str), "hello %" PRIu32 "", rx_count);
-	simple_udp_sendto(&udp_conn, str, strlen(str), &dest_ipaddr);
+	simple_udp_sendto(&udp_conn, data, 32, &dest_ipaddr);
 	LOG_INFO("TRANS: Sent package\n");
+	free(data);
 	PROCESS_END();
 }
 /*---------------------------------------------------------------------------*/

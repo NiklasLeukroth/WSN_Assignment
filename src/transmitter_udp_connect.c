@@ -1,6 +1,7 @@
 #include "../include/transmitter.h"
 #include "net/netstack.h"
 #include "net/routing/routing.h"
+#include "wsn_global.h"
 
 static bool udp_connection_established = false;
 /*---------------------------------------------------------------------------*/
@@ -15,14 +16,21 @@ udp_rx_callback(struct simple_udp_connection *c,
 				const uint8_t *data,
 				uint16_t datalen)
 {
+	data_package * pck = (data_package *)data;
+	if(pck->ack == 0x00)
+	{
+		LOG_INFO("TREC: received response '%.*s' from ", datalen - 2, (char *)pck->payload);
+		LOG_INFO_6ADDR(sender_addr);
+		LOG_INFO(" with seq number %u", pck->seq);
+		printf("\n");
+	}
+	else 
+	{
+		LOG_INFO("TREC: received ack package %u from ", pck->seq);
+		LOG_INFO_6ADDR(sender_addr);
+		printf("\n");
 
-	LOG_INFO("TUDPC: Received response '%.*s' from ", datalen, (char *)data);
-	LOG_INFO_6ADDR(sender_addr);
-#if LLSEC802154_CONF_ENABLED
-	LOG_INFO_("TUDPC: LLSEC LV:%d", uipbuf_get_attr(UIPBUF_ATTR_LLSEC_LEVEL));
-#endif
-	LOG_INFO_("\n");
-	rx_count++;
+	}
 }
 
 PROCESS_THREAD(transmitter_udp_connect, ev, data)
@@ -31,10 +39,11 @@ PROCESS_THREAD(transmitter_udp_connect, ev, data)
 
 	PROCESS_BEGIN();
 
-	etimer_set(&timer, CLOCK_SECOND * 5);
+	etimer_set(&timer, CLOCK_SECOND * 2);
 
 	LOG_INFO("TUDPC: Establishing UDP Connection\n");
 	rx_count = 0;
+
 	simple_udp_register(&udp_conn, UDP_CLIENT_PORT, NULL,
 						UDP_SERVER_PORT, udp_rx_callback);
 	while (1)
