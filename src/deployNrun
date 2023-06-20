@@ -1,4 +1,4 @@
 #!/bin/bash
 
 clear
-sudo make TARGET=zoul BOARD=remote-revb main.upload login
+sudo make $1 TARGET=zoul BOARD=remote-revb main.upload login
