@@ -4,6 +4,7 @@
 typedef struct _data_package {
   char ack;
   char seq;
+  char len;
   char payload[30];
 } data_package;
 

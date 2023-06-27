@@ -8,6 +8,7 @@
         "simple-udp.h": "c",
         "random.h": "c",
         "netstack.h": "c",
-        "routing.h": "c"
+        "routing.h": "c",
+        "contiki.h": "c"
     }
 }
