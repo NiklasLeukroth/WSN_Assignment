@@ -18,7 +18,6 @@
 #define SENDER_PORT	5678
 static struct simple_udp_connection udp_conn;
 
-
 PROCESS(receiver_process, "receiver process");
 AUTOSTART_PROCESSES(&receiver_process);
 
@@ -58,6 +57,9 @@ PROCESS_THREAD(receiver_process, ev, data)
     // static struct etimer timer;
 
     PROCESS_BEGIN();
+
+    // NETSTACK_RADIO.set_value()
+
 
     // etimer_set(&timer, CLOCK_SECOND * 1);
 
