@@ -935,7 +935,6 @@ read(void *buf, unsigned short buf_len)
     len = rx_pkt_len - APPENDIX_LEN;
 
     if(len > buf_len) {
-
       ERROR("RF: Failed to read packet (too big)!\n");
 
     } else {

@@ -9,6 +9,9 @@
         "random.h": "c",
         "netstack.h": "c",
         "routing.h": "c",
-        "contiki.h": "c"
+        "contiki.h": "c",
+        "*.ipp": "c",
+        "*.tcc": "c",
+        "future": "c"
     }
 }
