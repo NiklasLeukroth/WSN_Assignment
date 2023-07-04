@@ -10,7 +10,6 @@ USER root
 # gdb: development tools.
 # git: development tools.
 # git-lfs: development tools (used by Gecko SDK).
-# gosu: used for UID-remapping.
 # iputils-ping: used by regression tests.
 # less: convenience tool.
 # lib32z1: 32-bit libz, probably used by some old 32-bit binary.
@@ -36,7 +35,6 @@ RUN apt-get -qq update && \
     gdb \
     git \
     git-lfs \
-    gosu \
     iputils-ping \
     less \
     lib32z1 \
@@ -93,10 +91,10 @@ RUN wget -nv http://simonduq.github.io/resources/mspgcc-4.7.2-compiled.tar.bz2 &
   rm -rf /tmp/msp430 mspgcc*.tar.bz2
 
 # Install nRF Command Line tools
-RUN wget -nv https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-17-3/nrf-command-line-tools_10.17.3_amd64.deb && \
-  wget -nv https://nsscprodmedia.blob.core.windows.net/prod/software-and-other-downloads/desktop-software/nrf-command-line-tools/sw/versions-10-x-x/10-17-3/nrf-command-line-tools-10.17.3_linux-amd64.tar.gz && \
+RUN wget -nv https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-command-line-tools/sw/Versions-10-x-x/10-17-3/nrf-command-line-tools_10.17.3_amd64.deb && \
+  wget -nv https://www.nordicsemi.com/-/media/Software-and-other-downloads/Desktop-software/nRF-command-line-tools/sw/Versions-10-x-x/10-17-3/nrf-command-line-tools-10.17.3_Linux-amd64.tar.gz && \
   apt-get -qq -y --no-install-recommends install ./nrf-command-line-tools_10.17.3_amd64.deb > /dev/null && \
-  tar zxf nrf-command-line-tools-10.17.3_linux-amd64.tar.gz ./JLink_Linux_V766a_x86_64.deb && \
+  tar zxf nrf-command-line-tools-10.17.3_Linux-amd64.tar.gz ./JLink_Linux_V766a_x86_64.deb && \
   apt-get -qq -y --no-install-recommends install ./JLink_Linux_V766a_x86_64.deb > /dev/null && \
   rm -f *.deb *.tar.gz && \
   apt-get -qq clean
@@ -149,8 +147,6 @@ WORKDIR                 ${HOME}
 COPY --chown=user:user files/cooja ${HOME}/.local/bin/cooja
 # Add aliases for CI. Use a file to avoid quoting issues.
 COPY --chown=user:user files/bash_aliases ${HOME}/.bash_aliases
-# Add login-script for UID/GID-remapping.
-COPY --chown=root:root files/remap-user.sh /usr/local/bin/remap-user.sh
 
 # Doxygen 1.8.17 in Ubuntu 20.04 gives (false) warnings on mqtt.h.
 # Use a binary from the Doxygen homepage, static linking started with 1.9.3.
@@ -161,8 +157,8 @@ RUN wget -nv https://sourceforge.net/projects/doxygen/files/rel-1.9.4/doxygen-1.
     tar zxf doxygen-1.9.4.linux.bin.tar.gz -C ${HOME}/.local && \
     rm -rf ${HOME}/.local/doxygen-1.9.4/html ${HOME}/.local/doxygen-1.9.4/*.pdf doxygen-1.9.4.linux.bin.tar.gz && \
     (cd ${HOME}/.local/bin && ln -s ../doxygen-1.9.4/bin/doxygen .) && \
-    wget -nv https://github.com/ccache/ccache/releases/download/v4.7.4/ccache-4.7.4-linux-x86_64.tar.xz && \
-    tar xf ccache-4.7.4-linux-x86_64.tar.xz -C ${HOME}/.local/bin --strip-components=1 ccache-4.7.4-linux-x86_64/ccache && \
+    wget -nv https://github.com/ccache/ccache/releases/download/v4.7.2/ccache-4.7.2-linux-x86_64.tar.xz && \
+    tar xf ccache-4.7.2-linux-x86_64.tar.xz -C ${HOME}/.local/bin --strip-components=1 ccache-4.7.2-linux-x86_64/ccache && \
     rm ccache-*-linux-x86_64.tar.xz
 
 # By default, we use a Docker bind mount to share the repo with the host,
@@ -176,6 +172,4 @@ RUN wget -nv https://sourceforge.net/projects/doxygen/files/rel-1.9.4/doxygen-1.
 WORKDIR ${CONTIKI_NG}
 
 # Start a bash
-USER root
-ENTRYPOINT ["/usr/local/bin/remap-user.sh"]
 CMD bash --login

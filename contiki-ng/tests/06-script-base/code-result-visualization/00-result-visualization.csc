@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simconf version="2022112801">
+<simconf>
   <simulation>
     <title>RPL+TSCH</title>
     <randomseed>1</randomseed>
@@ -16,6 +16,7 @@
     </events>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
+      <identifier>mtype660</identifier>
       <description>RPL/TSCH Node</description>
       <source>[CONTIKI_DIR]/examples/benchmarks/result-visualization/node.c</source>
       <commands>make clean TARGET=cooja
@@ -27,7 +28,7 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRS232</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiBeeper</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiIPAddress</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRadio</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiButton</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiPIR</moteinterface>
@@ -36,28 +37,42 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiCFS</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
-      <mote>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="0.0" y="0.0" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-          <id>1</id>
-        </interface_config>
-      </mote>
-      <mote>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="0.0" y="45.0" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-          <id>2</id>
-        </interface_config>
-      </mote>
     </motetype>
+    <mote>
+      <interface_config>
+        org.contikios.cooja.interfaces.Position
+        <x>0.0</x>
+        <y>0.0</y>
+        <z>0.0</z>
+      </interface_config>
+      <interface_config>
+        org.contikios.cooja.contikimote.interfaces.ContikiMoteID
+        <id>1</id>
+      </interface_config>
+      <motetype_identifier>mtype660</motetype_identifier>
+    </mote>
+    <mote>
+      <interface_config>
+        org.contikios.cooja.interfaces.Position
+        <x>0.0</x>
+        <y>45.0</y>
+        <z>0.0</z>
+      </interface_config>
+      <interface_config>
+        org.contikios.cooja.contikimote.interfaces.ContikiMoteID
+        <id>2</id>
+      </interface_config>
+      <motetype_identifier>mtype660</motetype_identifier>
+    </mote>
   </simulation>
+  <plugin>
+    org.contikios.cooja.plugins.SimControl
+    <width>242</width>
+    <z>4</z>
+    <height>160</height>
+    <location_x>11</location_x>
+    <location_y>241</location_y>
+  </plugin>
   <plugin>
     org.contikios.cooja.plugins.Visualizer
     <plugin_config>
@@ -68,7 +83,11 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
       <viewport>1.7405603810040515 0.0 0.0 1.7405603810040515 47.95980153208088 -42.576134155447555</viewport>
     </plugin_config>
-    <bounds x="1" y="1" height="230" width="236" z="3" />
+    <width>236</width>
+    <z>3</z>
+    <height>230</height>
+    <location_x>1</location_x>
+    <location_y>1</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
@@ -77,7 +96,11 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <formatted_time />
       <coloring />
     </plugin_config>
-    <bounds x="273" y="6" height="394" width="1031" z="2" />
+    <width>1031</width>
+    <z>0</z>
+    <height>394</height>
+    <location_x>273</location_x>
+    <location_y>6</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.TimeLine
@@ -89,7 +112,11 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <showRadioHW />
       <zoomfactor>16529.88882215865</zoomfactor>
     </plugin_config>
-    <bounds x="0" y="412" height="311" width="1304" z="1" />
+    <width>1304</width>
+    <z>1</z>
+    <height>311</height>
+    <location_x>0</location_x>
+    <location_y>412</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.ScriptRunner
@@ -97,6 +124,11 @@ make -j$(CPUS) TARGET=cooja node.cooja</commands>
       <scriptfile>[CONFIG_DIR]/00-result-visualization.js</scriptfile>
       <active>true</active>
     </plugin_config>
-    <bounds x="3" y="404" height="427" width="457" />
+    <width>457</width>
+    <z>2</z>
+    <height>427</height>
+    <location_x>3</location_x>
+    <location_y>404</location_y>
   </plugin>
 </simconf>
+

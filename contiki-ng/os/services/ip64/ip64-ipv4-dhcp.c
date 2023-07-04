@@ -32,17 +32,15 @@
 #include "contiki.h"
 #include "contiki-net.h"
 #include "ip64/ip64-dhcpc.h"
+
 #include "ip64/ip64.h"
 #include "ip64/ip64-eth.h"
 #include "ipv6/ip64-addr.h"
 
-/*---------------------------------------------------------------------------*/
+#include <stdio.h>
 
-#include "sys/log.h"
-#define LOG_MODULE  "IP64"
-#define LOG_LEVEL   LOG_LEVEL_IP64
-
-/*---------------------------------------------------------------------------*/
+#define DEBUG DEBUG_NONE
+#include "net/ipv6/uip-debug.h"
 
 PROCESS(ip64_ipv4_dhcp_process, "IPv4 DHCP");
 
@@ -53,7 +51,7 @@ uip_ipaddr_t uip_hostaddr; /* Needed because it is referenced by dhcpc.c */
 void
 ip64_ipv4_dhcp_init(void)
 {
-  LOG_INFO("Starting DHCPv4\n");
+  printf("IP64: Starting DHCPv4\n");
   process_start(&ip64_ipv4_dhcp_process, NULL);
 }
 /*---------------------------------------------------------------------------*/
@@ -63,10 +61,10 @@ PROCESS_THREAD(ip64_ipv4_dhcp_process, ev, data)
 
   ip64_dhcpc_init(&ip64_eth_addr, sizeof(ip64_eth_addr));
 
-  LOG_INFO("IPv4 DHCP Inited\n");
+  PRINTF("IP64: Inited\n");
 
   ip64_dhcpc_request();
-  LOG_DBG("IPv4 DHCP Requested\n");
+  PRINTF("IP64: Requested\n");
   while(1) {
     PROCESS_WAIT_EVENT();
 
@@ -83,7 +81,7 @@ void
 ip64_dhcpc_configured(const struct ip64_dhcpc_state *s)
 {
   uip_ip6addr_t ip6dnsaddr;
-  LOG_INFO("DHCP Configured with %d.%d.%d.%d\n",
+  PRINTF("IP64: DHCP Configured with %d.%d.%d.%d\n",
 	 s->ipaddr.u8[0], s->ipaddr.u8[1],
 	 s->ipaddr.u8[2], s->ipaddr.u8[3]);
 

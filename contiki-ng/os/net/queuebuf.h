@@ -54,7 +54,6 @@
 #define QUEUEBUF_H_
 
 #include "net/packetbuf.h"
-#include <stdlib.h>
 
 #ifdef QUEUEBUF_CONF_ENABLED
 #define QUEUEBUF_ENABLED QUEUEBUF_CONF_ENABLED
@@ -116,7 +115,7 @@ packetbuf_attr_t queuebuf_attr(struct queuebuf *b, uint8_t type);
 
 void queuebuf_debug_print(void);
 
-size_t queuebuf_numfree(void);
+int queuebuf_numfree(void);
 
 #endif /* __QUEUEBUF_H__ */
 
