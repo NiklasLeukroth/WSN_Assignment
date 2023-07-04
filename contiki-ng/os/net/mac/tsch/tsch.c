@@ -127,6 +127,8 @@ struct tsch_asn_t tsch_current_asn;
 /* Device rank or join priority:
  * For PAN coordinator: 0 -- lower is better */
 uint8_t tsch_join_priority;
+/* The current TSCH sequence number, used for unicast data frames only */
+static uint8_t tsch_packet_seqno;
 /* Current period for EB output */
 static clock_time_t tsch_current_eb_period;
 /* Current period for keepalive output */
@@ -505,21 +507,17 @@ tsch_rx_process_pending()
       && frame.fcf.frame_type == FRAME802154_BEACONFRAME;
 
     if(is_data) {
-      /* Copy payload to packetbuf for processing */
+      /* Skip EBs and other control messages */
+      /* Copy to packetbuf for processing */
       packetbuf_copyfrom(current_input->payload, current_input->len);
       packetbuf_set_attr(PACKETBUF_ATTR_RSSI, current_input->rssi);
       packetbuf_set_attr(PACKETBUF_ATTR_CHANNEL, current_input->channel);
+    }
 
+    if(is_data) {
       /* Pass to upper layers */
       packet_input();
-
     } else if(is_eb) {
-      /* Don't pass to upper layers, but still count it in link stats */
-      packetbuf_set_attr(PACKETBUF_ATTR_RSSI, current_input->rssi);
-      packetbuf_set_attr(PACKETBUF_ATTR_CHANNEL, current_input->channel);
-      link_stats_input_callback((const linkaddr_t *)frame.src_addr);
-
-      /* Process EB without copying the payload to packetbuf */
       eb_input(current_input);
     }
 
@@ -1065,7 +1063,7 @@ tsch_init(void)
   ringbufindex_init(&input_ringbuf, TSCH_MAX_INCOMING_PACKETS);
   ringbufindex_init(&dequeued_ringbuf, TSCH_DEQUEUED_ARRAY_SIZE);
 
-  mac_sequence_init();
+  tsch_packet_seqno = random_rand();
   tsch_is_initialized = 1;
 
 #if TSCH_AUTOSTART
@@ -1104,7 +1102,12 @@ send_packet(mac_callback_t sent, void *ptr)
 
   /* Ask for ACK if we are sending anything other than broadcast */
   if(!linkaddr_cmp(addr, &linkaddr_null)) {
-    mac_sequence_set_dsn();
+    /* PACKETBUF_ATTR_MAC_SEQNO cannot be zero, due to a pecuilarity
+           in framer-802154.c. */
+    if(++tsch_packet_seqno == 0) {
+      tsch_packet_seqno++;
+    }
+    packetbuf_set_attr(PACKETBUF_ATTR_MAC_SEQNO, tsch_packet_seqno);
     packetbuf_set_attr(PACKETBUF_ATTR_MAC_ACK, 1);
   } else {
     /* Broadcast packets shall be added to broadcast queue
@@ -1119,7 +1122,14 @@ send_packet(mac_callback_t sent, void *ptr)
   tsch_security_set_packetbuf_attr(FRAME802154_DATAFRAME);
 #endif /* LLSEC802154_ENABLED */
 
+#if !NETSTACK_CONF_BRIDGE_MODE
+  /*
+   * In the Contiki stack, the source address of a frame is set at the RDC
+   * layer. Since TSCH doesn't use any RDC protocol and bypasses the layer to
+   * transmit a frame, it should set the source address by itself.
+   */
   packetbuf_set_addr(PACKETBUF_ADDR_SENDER, &linkaddr_node_addr);
+#endif
 
   max_transmissions = packetbuf_attr(PACKETBUF_ATTR_MAX_MAC_TRANSMISSIONS);
   if(max_transmissions == 0) {
@@ -1140,8 +1150,7 @@ send_packet(mac_callback_t sent, void *ptr)
       LOG_ERR("! can't send packet to ");
       LOG_ERR_LLADDR(addr);
       LOG_ERR_(" with seqno %u, queue %u/%u %u/%u\n",
-          packetbuf_attr(PACKETBUF_ATTR_MAC_SEQNO),
-          tsch_queue_nbr_packet_count(n),
+          tsch_packet_seqno, tsch_queue_nbr_packet_count(n),
           TSCH_QUEUE_NUM_PER_NEIGHBOR, tsch_queue_global_packet_count(),
           QUEUEBUF_NUM);
       ret = MAC_TX_QUEUE_FULL;
@@ -1150,8 +1159,7 @@ send_packet(mac_callback_t sent, void *ptr)
       LOG_INFO("send packet to ");
       LOG_INFO_LLADDR(addr);
       LOG_INFO_(" with seqno %u, queue %u/%u %u/%u, len %u %u\n",
-             packetbuf_attr(PACKETBUF_ATTR_MAC_SEQNO),
-             tsch_queue_nbr_packet_count(n),
+             tsch_packet_seqno, tsch_queue_nbr_packet_count(n),
              TSCH_QUEUE_NUM_PER_NEIGHBOR, tsch_queue_global_packet_count(),
              QUEUEBUF_NUM, p->header_len, queuebuf_datalen(p->qb));
     }

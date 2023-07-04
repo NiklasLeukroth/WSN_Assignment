@@ -38,8 +38,8 @@
  *         Joakim Eriksson <joakime@sics.se>
  */
 
-#ifndef ANTELOPE_DEBUG_H
-#define ANTELOPE_DEBUG_H
+#ifndef UIP_DEBUG_H
+#define UIP_DEBUG_H
 
 #define DEBUG_NONE      0
 #define DEBUG_PRINT     1
