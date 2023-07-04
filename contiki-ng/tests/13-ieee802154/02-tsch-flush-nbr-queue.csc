@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<simconf version="2022112801">
+<simconf>
   <simulation>
     <title>My simulation</title>
     <randomseed>1</randomseed>
@@ -16,6 +16,7 @@
     </events>
     <motetype>
       org.contikios.cooja.contikimote.ContikiMoteType
+      <identifier>mtype476</identifier>
       <description>Cooja Mote Type #1</description>
       <source>[CONFIG_DIR]/code-flush-nbr-queue/test-flush-nbr-queue.c</source>
       <commands>make clean TARGET=cooja
@@ -27,7 +28,7 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRS232</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiBeeper</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.RimeAddress</moteinterface>
-      <moteinterface>org.contikios.cooja.interfaces.IPAddress</moteinterface>
+      <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiIPAddress</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiRadio</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiButton</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiPIR</moteinterface>
@@ -37,18 +38,29 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiEEPROM</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.Mote2MoteRelations</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.MoteAttributes</moteinterface>
-      <mote>
-        <interface_config>
-          org.contikios.cooja.interfaces.Position
-          <pos x="38.79981729133275" y="97.05367953429746" />
-        </interface_config>
-        <interface_config>
-          org.contikios.cooja.contikimote.interfaces.ContikiMoteID
-          <id>1</id>
-        </interface_config>
-      </mote>
     </motetype>
+    <mote>
+      <interface_config>
+        org.contikios.cooja.interfaces.Position
+        <x>38.79981729133275</x>
+        <y>97.05367953429746</y>
+        <z>0.0</z>
+      </interface_config>
+      <interface_config>
+        org.contikios.cooja.contikimote.interfaces.ContikiMoteID
+        <id>1</id>
+      </interface_config>
+      <motetype_identifier>mtype476</motetype_identifier>
+    </mote>
   </simulation>
+  <plugin>
+    org.contikios.cooja.plugins.SimControl
+    <width>280</width>
+    <z>4</z>
+    <height>160</height>
+    <location_x>400</location_x>
+    <location_y>0</location_y>
+  </plugin>
   <plugin>
     org.contikios.cooja.plugins.Visualizer
     <plugin_config>
@@ -59,7 +71,11 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <skin>org.contikios.cooja.plugins.skins.UDGMVisualizerSkin</skin>
       <viewport>0.9090909090909091 0.0 0.0 0.9090909090909091 158.72743882606113 84.76938224154777</viewport>
     </plugin_config>
-    <bounds x="1" y="1" height="400" width="400" z="4" />
+    <width>400</width>
+    <z>3</z>
+    <height>400</height>
+    <location_x>1</location_x>
+    <location_y>1</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.LogListener
@@ -68,7 +84,11 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <formatted_time />
       <coloring />
     </plugin_config>
-    <bounds x="400" y="160" height="240" width="1320" z="3" />
+    <width>1320</width>
+    <z>2</z>
+    <height>240</height>
+    <location_x>400</location_x>
+    <location_y>160</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.TimeLine
@@ -79,7 +99,11 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <showLEDs />
       <zoomfactor>500.0</zoomfactor>
     </plugin_config>
-    <bounds x="0" y="957" height="166" width="1720" z="2" />
+    <width>1720</width>
+    <z>1</z>
+    <height>166</height>
+    <location_x>0</location_x>
+    <location_y>957</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.Notes
@@ -87,7 +111,11 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <notes>Enter notes here</notes>
       <decorations>true</decorations>
     </plugin_config>
-    <bounds x="680" y="0" height="160" width="1040" z="1" />
+    <width>1040</width>
+    <z>5</z>
+    <height>160</height>
+    <location_x>680</location_x>
+    <location_y>0</location_y>
   </plugin>
   <plugin>
     org.contikios.cooja.plugins.ScriptRunner
@@ -95,6 +123,11 @@ make -j$(CPUS) test-flush-nbr-queue.cooja TARGET=cooja</commands>
       <scriptfile>[CONFIG_DIR]/js/02-tsch-flush-nbr-queue.js</scriptfile>
       <active>true</active>
     </plugin_config>
-    <bounds x="663" y="105" height="525" width="495" />
+    <width>495</width>
+    <z>0</z>
+    <height>525</height>
+    <location_x>663</location_x>
+    <location_y>105</location_y>
   </plugin>
 </simconf>
+

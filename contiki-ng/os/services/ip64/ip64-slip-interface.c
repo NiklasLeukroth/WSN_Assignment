@@ -32,17 +32,14 @@
 #include "net/ipv6/uip.h"
 #include "net/ipv6/uip-ds6.h"
 #include "dev/slip.h"
+
 #include "ip64/ip64.h"
 
 #include <string.h>
+#include <stdio.h>
 
-/*---------------------------------------------------------------------------*/
-
-#include "sys/log.h"
-#define LOG_MODULE  "IP64"
-#define LOG_LEVEL   LOG_LEVEL_IP64
-
-/*---------------------------------------------------------------------------*/
+#define DEBUG DEBUG_NONE
+#include "net/ipv6/uip-debug.h"
 
 static uip_ipaddr_t last_sender;
 
@@ -59,7 +56,7 @@ input_callback(void)
 {
   /*PRINTF("SIN: %u\n", uip_len);*/
   if(uip_buf[0] == '!') {
-    LOG_DBG("Got configuration message of type %c\n", uip_buf[1]);
+    PRINTF("Got configuration message of type %c\n", uip_buf[1]);
     uipbuf_clear();
 #if 0
     if(uip_buf[1] == 'P') {
@@ -67,14 +64,14 @@ input_callback(void)
       /* Here we set a prefix !!! */
       memset(&prefix, 0, 16);
       memcpy(&prefix, &uip_buf[2], 8);
-      LOG_DBG("Setting prefix ");
-      LOG_DBG_6ADDR(&prefix);
-      LOG_DBG_("\n");
+      PRINTF("Setting prefix ");
+      PRINT6ADDR(&prefix);
+      PRINTF("\n");
       set_prefix_64(&prefix);
     }
 #endif
   } else if(uip_buf[0] == '?') {
-    LOG_DBG("Got request message of type %c\n", uip_buf[1]);
+    PRINTF("Got request message of type %c\n", uip_buf[1]);
     if(uip_buf[1] == 'M') {
       const char *hexchar = "0123456789abcdef";
       int j;
@@ -99,7 +96,7 @@ input_callback(void)
     if(len > 0) {
       memcpy(uip_buf, ip64_packet_buffer, len);
       uip_len = len;
-      /*      LOG_DBG("send len %d\n", len); */
+      /*      PRINTF("send len %d\n", len); */
     } else {
       uipbuf_clear();
     }
@@ -109,7 +106,7 @@ input_callback(void)
 static void
 init(void)
 {
-  LOG_INFO("ip64-slip-interface: init\n");
+  PRINTF("ip64-slip-interface: init\n");
   process_start(&slip_process, NULL);
   slip_set_input_callback(input_callback);
 }
@@ -119,7 +116,7 @@ output(void)
 {
   int len;
 
-  LOG_DBG("ip64-slip-interface: output source ");
+  PRINTF("ip64-slip-interface: output source ");
 
   /*
   PRINT6ADDR(&UIP_IP_BUF->srcipaddr);
@@ -128,11 +125,11 @@ output(void)
   PRINTF("\n");
   */
   if(uip_ipaddr_cmp(&last_sender, &UIP_IP_BUF->srcipaddr)) {
-    LOG_WARN("ip64-interface: output, not sending bounced message\n");
+    PRINTF("ip64-interface: output, not sending bounced message\n");
   } else {
     len = ip64_6to4(uip_buf, uip_len,
 		    ip64_packet_buffer);
-    LOG_DBG("ip64-interface: output len %d\n", len);
+    PRINTF("ip64-interface: output len %d\n", len);
     if(len > 0) {
       memcpy(uip_buf, ip64_packet_buffer, len);
       uip_len = len;

@@ -64,7 +64,6 @@
 #define MEMB_H_
 
 #include <stdbool.h>
-#include <stdlib.h>
 #include "sys/cc.h"
 
 /**
@@ -148,7 +147,7 @@ int memb_inmemb(struct memb *m, void *ptr);
  *
  * \return the number of free (available) memory blocks
  */
-size_t memb_numfree(struct memb *m);
+int  memb_numfree(struct memb *m);
 
 /** @} */
 /** @} */

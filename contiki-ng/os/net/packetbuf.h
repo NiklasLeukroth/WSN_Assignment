@@ -217,6 +217,7 @@ enum {
   PACKETBUF_ATTR_NETWORK_ID,
   PACKETBUF_ATTR_LINK_QUALITY,
   PACKETBUF_ATTR_RSSI,
+  PACKETBUF_ATTR_TIMESTAMP,
   PACKETBUF_ATTR_MAX_MAC_TRANSMISSIONS,
   PACKETBUF_ATTR_MAC_SEQNO,
   PACKETBUF_ATTR_MAC_ACK,
@@ -264,10 +265,10 @@ int               packetbuf_set_addr(uint8_t type, const linkaddr_t *addr);
 const linkaddr_t *packetbuf_addr(uint8_t type);
 
 /**
- * \brief       Checks whether the current packet is a broadcast.
- * \retval true iff the current packet is a broadcast
+ * \brief      Checks whether the current packet is a broadcast.
+ * \retval 0   iff current packet is not a broadcast
  */
-bool              packetbuf_holds_broadcast(void);
+int               packetbuf_holds_broadcast(void);
 
 void              packetbuf_attr_clear(void);
 

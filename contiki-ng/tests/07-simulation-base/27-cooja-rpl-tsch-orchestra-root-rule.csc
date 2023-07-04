@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simconf>
   <simulation>
-    <title>RPL+TSCH+Orchestrsa</title>
+    <title>RPL+TSCH+Orchestra</title>
     <randomseed>1</randomseed>
     <motedelay_us>1000000</motedelay_us>
     <radiomedium>
@@ -20,7 +20,7 @@
       <description>Cooja Mote Type #mtype11</description>
       <source>[CONTIKI_DIR]/examples/6tisch/simple-node/node.c</source>
       <commands>make TARGET=cooja clean
-make -j$(CPUS) node.cooja TARGET=cooja MAKE_WITH_ORCHESTRA=1 MAKE_WITH_SECURITY=0 MAKE_WITH_PERIODIC_ROUTES_PRINT=1</commands>
+make -j$(CPUS) node.cooja TARGET=cooja MAKE_WITH_ORCHESTRA=1 MAKE_WITH_SECURITY=0 MAKE_WITH_PERIODIC_ROUTES_PRINT=1 MAKE_WITH_STORING_ROUTING=1 MAKE_WITH_ORCHESTRA_ROOT_RULE=1</commands>
       <moteinterface>org.contikios.cooja.interfaces.Position</moteinterface>
       <moteinterface>org.contikios.cooja.interfaces.Battery</moteinterface>
       <moteinterface>org.contikios.cooja.contikimote.interfaces.ContikiVib</moteinterface>
@@ -221,13 +221,17 @@ make -j$(CPUS) node.cooja TARGET=cooja MAKE_WITH_ORCHESTRA=1 MAKE_WITH_SECURITY=
     <plugin_config>
       <script>TIMEOUT(360000); /* Time out after 6 minutes */&#xD;
 /* Wait until a node (can only be the DAGRoot) has&#xD;
- * 9 routing entries including one for the root (i.e. can reach every node) */&#xD;
+ * 8 routing entries including one for the root (i.e. can reach every node)&#xD;
+ * and some of the nodes use the root rule for packet transmission */&#xD;
 log.log("Waiting for routing links to fill\n");&#xD;
+var uses_root_rule=false;&#xD;
 while(true) {;&#xD;
-  WAIT_UNTIL(id == 1 &amp;&amp; msg.contains("Routing links"));&#xD;
+  WAIT_UNTIL(msg.contains("Routing entries") || msg.contains("use the root rule"));&#xD;
   log.log(msg + "\n");&#xD;
-  if(msg.contains("Routing links: 9")) {&#xD;
+  if(uses_root_rule &amp;&amp; msg.contains("Routing entries: 8")) {&#xD;
     log.testOK(); /* Report test success and quit */&#xD;
+  } else if(msg.contains("use the root rule")) {&#xD;
+    uses_root_rule=true;&#xD;
   }&#xD;
   YIELD();&#xD;
 }</script>

@@ -294,7 +294,7 @@ queuebuf_init(void)
 #endif /* QUEUEBUF_STATS */
 }
 /*---------------------------------------------------------------------------*/
-size_t
+int
 queuebuf_numfree(void)
 {
   return memb_numfree(&bufmem);

@@ -46,16 +46,6 @@
 #define MAC_SEQUENCE_H
 
 /**
- * brief       Initializes the destination sequence number to a random value.
- */
-void mac_sequence_init(void);
-
-/**
- * \brief      Sets and increments the destination sequence number.
- */
-void mac_sequence_set_dsn(void);
-
-/**
  * \brief      Tell whether the packetbuf is a duplicate packet
  * \return     Non-zero if the packetbuf is a duplicate packet, zero otherwise
  *

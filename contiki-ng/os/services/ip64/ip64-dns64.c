@@ -33,13 +33,16 @@
 #include "ipv6/ip64-addr.h"
 #include "ip64/ip64-dns64.h"
 
-/*---------------------------------------------------------------------------*/
+#include <stdio.h>
 
-#include "sys/log.h"
-#define LOG_MODULE  "IP64"
-#define LOG_LEVEL   LOG_LEVEL_IP64
+#define DEBUG 0
 
-/*---------------------------------------------------------------------------*/
+#if DEBUG
+#undef PRINTF
+#define PRINTF(...) printf(__VA_ARGS__)
+#else /* DEBUG */
+#define PRINTF(...)
+#endif /* DEBUG */
 
 struct dns_hdr {
   uint8_t id[2];
@@ -98,17 +101,13 @@ ip64_dns64_6to4(const uint8_t *ipv6data, int ipv6datalen,
   struct dns_hdr *hdr;
 
   hdr = (struct dns_hdr *)ipv4data;
-  LOG_DBG("dns64_6to4 id: %02x%02x\n", hdr->id[0], hdr->id[1]);
-  LOG_DBG("dns64_6to4 flags1: 0x%02x\n", hdr->flags1);
-  LOG_DBG("ip64_dns64_6to4 flags2: 0x%02x\n", hdr->flags2);
-  LOG_DBG("dns64_6to4 numquestions: 0x%02x\n",
-      ((hdr->numquestions[0] << 8) + hdr->numquestions[1]));
-  LOG_DBG("dns64_6to4 numanswers: 0x%02x\n",
-      ((hdr->numanswers[0] << 8) + hdr->numanswers[1]));
-  LOG_DBG("dns64_6to4 numauthrr: 0x%02x\n",
-      ((hdr->numauthrr[0] << 8) + hdr->numauthrr[1]));
-  LOG_DBG("dns64_6to4 numextrarr: 0x%02x\n",
-      ((hdr->numextrarr[0] << 8) + hdr->numextrarr[1]));
+  PRINTF("ip64_dns64_6to4 id: %02x%02x\n", hdr->id[0], hdr->id[1]);
+  PRINTF("ip64_dns64_6to4 flags1: 0x%02x\n", hdr->flags1);
+  PRINTF("ip64_dns64_6to4 flags2: 0x%02x\n", hdr->flags2);
+  PRINTF("ip64_dns64_6to4 numquestions: 0x%02x\n", ((hdr->numquestions[0] << 8) + hdr->numquestions[1]));
+  PRINTF("ip64_dns64_6to4 numanswers: 0x%02x\n", ((hdr->numanswers[0] << 8) + hdr->numanswers[1]));
+  PRINTF("ip64_dns64_6to4 numauthrr: 0x%02x\n", ((hdr->numauthrr[0] << 8) + hdr->numauthrr[1]));
+  PRINTF("ip64_dns64_6to4 numextrarr: 0x%02x\n", ((hdr->numextrarr[0] << 8) + hdr->numextrarr[1]));
 
   /* Find the DNS question header by scanning through the question
      labels. */
@@ -120,7 +119,7 @@ ip64_dns64_6to4(const uint8_t *ipv6data, int ipv6datalen,
       for(j = 0; j < qlen; j++) {
         qdata++;
         if(qdata > ipv4data + ipv4datalen) {
-          LOG_WARN("dns64_6to4: Packet ended while parsing\n");
+          PRINTF("ip64_dns64_6to4: packet ended while parsing\n");
           return;
         }
       }
@@ -148,17 +147,13 @@ ip64_dns64_4to6(const uint8_t *ipv4data, int ipv4datalen,
   struct dns_hdr *hdr;
 
   hdr = (struct dns_hdr *)ipv4data;
-  LOG_DBG("dns64_4to6 id: %02x%02x\n", hdr->id[0], hdr->id[1]);
-  LOG_DBG("dns64_4to6 flags1: 0x%02x\n", hdr->flags1);
-  LOG_DBG("dns64_4to6 flags2: 0x%02x\n", hdr->flags2);
-  LOG_DBG("dns64_4to6 numquestions: 0x%02x\n",
-      ((hdr->numquestions[0] << 8) + hdr->numquestions[1]));
-  LOG_DBG("dns64_4to6 numanswers: 0x%02x\n",
-      ((hdr->numanswers[0] << 8) + hdr->numanswers[1]));
-  LOG_DBG("dns64_4to6 numauthrr: 0x%02x\n",
-      ((hdr->numauthrr[0] << 8) + hdr->numauthrr[1]));
-  LOG_DBG("dns64_4to6 numextrarr: 0x%02x\n",
-      ((hdr->numextrarr[0] << 8) + hdr->numextrarr[1]));
+  PRINTF("ip64_dns64_4to6 id: %02x%02x\n", hdr->id[0], hdr->id[1]);
+  PRINTF("ip64_dns64_4to6 flags1: 0x%02x\n", hdr->flags1);
+  PRINTF("ip64_dns64_4to6 flags2: 0x%02x\n", hdr->flags2);
+  PRINTF("ip64_dns64_4to6 numquestions: 0x%02x\n", ((hdr->numquestions[0] << 8) + hdr->numquestions[1]));
+  PRINTF("ip64_dns64_4to6 numanswers: 0x%02x\n", ((hdr->numanswers[0] << 8) + hdr->numanswers[1]));
+  PRINTF("ip64_dns64_4to6 numauthrr: 0x%02x\n", ((hdr->numauthrr[0] << 8) + hdr->numauthrr[1]));
+  PRINTF("ip64_dns64_4to6 numextrarr: 0x%02x\n", ((hdr->numextrarr[0] << 8) + hdr->numextrarr[1]));
 
   /* Find the DNS answer header by scanning through the question
      labels. */
@@ -173,7 +168,7 @@ ip64_dns64_4to6(const uint8_t *ipv4data, int ipv4datalen,
         qdata++;
         qcopy++;
         if(qdata > ipv4data + ipv4datalen) {
-          LOG_WARN("dns64_4to6: packet ended while parsing\n");
+          PRINTF("ip64_dns64_4to6: packet ended while parsing\n");
           return ipv6datalen;
         }
       }
