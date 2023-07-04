@@ -16,12 +16,14 @@ PROCESS(receiver_process, "receiver process");
 AUTOSTART_PROCESSES(&receiver_process);
 
 void rx_callback() {
-  data_package pkg;
+  int pkg;
 
-  NETSTACK_RADIO.read(&pkg, sizeof(data_package));
+  // NETSTACK_RADIO.read(&pkg, sizeof(data_package));
+  NETSTACK_RADIO.read(&pkg, sizeof(int));
 
   printf("received ");
-  print_data_package(&pkg, PACKAGE_PAYLOAD_LENGTH);
+  printf("%i\n", pkg);
+  // print_data_package(&pkg, PACKAGE_PAYLOAD_LENGTH);
 }
 
 PROCESS_THREAD(receiver_process, ev, data)
