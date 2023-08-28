@@ -57,9 +57,8 @@ build/zoul/remote-revb/obj/mac-sequence.o: \
  ../contiki-ng/os/lib/list.h ../contiki-ng/os/lib/memb.h \
  ../contiki-ng/os/lib/random.h ../contiki-ng/os/net/ipv6/udp-socket.h \
  ../contiki-ng/os/net/ipv6/tcp-socket.h ../contiki-ng/os/net/ipv6/uip.h \
- ../contiki-ng/os/net/netstack.h ../contiki-ng/os/lib/random.h \
- ../contiki-ng/os/net/mac/mac-sequence.h ../contiki-ng/os/net/packetbuf.h \
- ../contiki-ng/os/net/mac/llsec802154.h \
+ ../contiki-ng/os/net/netstack.h ../contiki-ng/os/net/mac/mac-sequence.h \
+ ../contiki-ng/os/net/packetbuf.h ../contiki-ng/os/net/mac/llsec802154.h \
  ../contiki-ng/os/net/mac/framer/frame802154.h \
  ../contiki-ng/os/net/mac/csma/csma-security.h \
  ../contiki-ng/os/net/mac/tsch/tsch-conf.h
@@ -145,7 +144,6 @@ build/zoul/remote-revb/obj/mac-sequence.o: \
 ../contiki-ng/os/net/ipv6/tcp-socket.h:
 ../contiki-ng/os/net/ipv6/uip.h:
 ../contiki-ng/os/net/netstack.h:
-../contiki-ng/os/lib/random.h:
 ../contiki-ng/os/net/mac/mac-sequence.h:
 ../contiki-ng/os/net/packetbuf.h:
 ../contiki-ng/os/net/mac/llsec802154.h:

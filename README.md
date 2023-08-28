@@ -5,5 +5,5 @@
 ## Deploy & Run
 
 ```bash
-src$ ./deployNRun
+src$ ./deployNRun [receiver | transmitter]
 ```

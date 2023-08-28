@@ -37,11 +37,10 @@ build/zoul/remote-revb/obj/csma-output.o: \
  ../contiki-ng/os/net/mac/csma/csma-security.h \
  ../contiki-ng/os/net/mac/tsch/tsch-conf.h \
  ../contiki-ng/os/net/netstack.h ../contiki-ng/os/net/mac/framer/framer.h \
- ../contiki-ng/os/net/mac/mac-sequence.h ../contiki-ng/os/net/queuebuf.h \
- ../contiki-ng/os/sys/ctimer.h ../contiki-ng/os/lib/random.h \
- ../contiki-ng/os/lib/list.h ../contiki-ng/os/lib/memb.h \
- ../contiki-ng/os/lib/assert.h ../contiki-ng/os/sys/log.h \
- ../contiki-ng/os/sys/log-conf.h
+ ../contiki-ng/os/net/queuebuf.h ../contiki-ng/os/sys/ctimer.h \
+ ../contiki-ng/os/lib/random.h ../contiki-ng/os/lib/list.h \
+ ../contiki-ng/os/lib/memb.h ../contiki-ng/os/lib/assert.h \
+ ../contiki-ng/os/sys/log.h ../contiki-ng/os/sys/log-conf.h
 ../contiki-ng/os/net/mac/csma/csma.h:
 ../contiki-ng/os/contiki.h:
 ../contiki-ng/arch/platform/zoul/./contiki-conf.h:
@@ -95,7 +94,6 @@ build/zoul/remote-revb/obj/csma-output.o: \
 ../contiki-ng/os/net/mac/tsch/tsch-conf.h:
 ../contiki-ng/os/net/netstack.h:
 ../contiki-ng/os/net/mac/framer/framer.h:
-../contiki-ng/os/net/mac/mac-sequence.h:
 ../contiki-ng/os/net/queuebuf.h:
 ../contiki-ng/os/sys/ctimer.h:
 ../contiki-ng/os/lib/random.h:
