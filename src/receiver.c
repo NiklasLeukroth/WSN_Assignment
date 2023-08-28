@@ -1,10 +1,4 @@
-#define ZOUL_CONF_USE_CC1200_RADIO 0
-
 #include <stdlib.h>
-
-#include "net/routing/routing.h"
-#include "net/netstack.h"
-#include "net/ipv6/simple-udp.h"
 
 #include "wsn_global.h"
 
@@ -26,31 +20,29 @@ static void udp_rx_callback(struct simple_udp_connection *c,
 {
   data_package *pck = (data_package *) data;
   LOG_INFO_6ADDR(sender_addr);
-  printf(" => \n");
 
   if (pck->ack == 0x00) {
-    print_data_package(pck, datalen);
+    print_full_log(pck, datalen, -1);
 
     short_package acknowlegement = {0xFF, pck->seq};
-
-    printf("Sending Acknowlegement with SEQ %i.\n", pck->seq);
     simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
-  } else {
-    printf("Received Acknowlegement with SEQ %i.\n", pck->seq);
   }
 }
 
 
 PROCESS_THREAD(receiver_process, ev, data)
 {
-    PROCESS_BEGIN();
+  PROCESS_BEGIN();
 
-    LOG_INFO("registering UDP connection\n");
-    NETSTACK_ROUTING.root_start();
-    do {
-      simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
-    } while (!NETSTACK_ROUTING.node_is_reachable());
-    LOG_INFO("registered UDP connection\n");
+  LOG_INFO("registering UDP connection\n");
 
-    PROCESS_END();
+  NETSTACK_ROUTING.root_start();
+
+  init_print_full_log();
+  do {
+    simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
+  } while (!NETSTACK_ROUTING.node_is_reachable());
+  LOG_INFO("registered UDP connection\n");
+
+  PROCESS_END();
 }
