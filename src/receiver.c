@@ -8,11 +8,6 @@
 
 #include "wsn_global.h"
 
-// just for logging / printing
-#include "sys/log.h"
-#define LOG_MODULE "App"
-#define LOG_LEVEL LOG_LEVEL_NONE
-
 // communication
 #define RECEIVER_PORT	8765
 #define SENDER_PORT	5678
