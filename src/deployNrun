@@ -1,4 +1,9 @@
 #!/bin/bash
 
 clear
-sudo make $2 TARGET=zoul BOARD=remote-revb $1.upload login
+
+if [ "$2" == "log" ]; then
+    sudo make TARGET=zoul BOARD=remote-revb $1.upload login > ./logs/s$3_v$4_$1.log
+else
+    sudo make $2 TARGET=zoul BOARD=remote-revb $1.upload login
+fi

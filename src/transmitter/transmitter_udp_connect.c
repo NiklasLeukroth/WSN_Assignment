@@ -36,7 +36,7 @@ PROCESS_THREAD(transmitter_udp_connect, ev, data)
 
 	PROCESS_BEGIN();
 
-	etimer_set(&timer, CLOCK_SECOND * 2);
+	etimer_set(&timer, CLOCK_SECOND * 5);
 
 	LOG_INFO("TUDPC: Establishing UDP Connection\n");
 	rx_count = 0;

@@ -1,3 +1,4 @@
+#define ZOUL_CONF_USE_CC1200_RADIO 0
 
 #include "transmitter/transmit_process.c"
 #include "transmitter/transmitter_udp_connect.c"
