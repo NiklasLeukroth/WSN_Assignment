@@ -17,7 +17,7 @@ PROCESS_THREAD(transmitter, ev, data)
 
 	PROCESS_BEGIN();
 
-	etimer_set(&timer, CLOCK_SECOND * 5);
+	etimer_set(&timer, CLOCK_SECOND * 1);
 
 	LOG_INFO("MAIN: Started the transmitter node\n");
 
