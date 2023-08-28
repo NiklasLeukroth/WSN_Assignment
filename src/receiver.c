@@ -11,7 +11,7 @@
 // just for logging / printing
 #include "sys/log.h"
 #define LOG_MODULE "App"
-#define LOG_LEVEL LOG_LEVEL_INFO
+#define LOG_LEVEL LOG_LEVEL_NONE
 
 // communication
 #define RECEIVER_PORT	8765
@@ -52,7 +52,9 @@ PROCESS_THREAD(receiver_process, ev, data)
 
     LOG_INFO("registering UDP connection\n");
     NETSTACK_ROUTING.root_start();
-    simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
+    do {
+      simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
+    } while (!NETSTACK_ROUTING.node_is_reachable());
     LOG_INFO("registered UDP connection\n");
 
     PROCESS_END();
