@@ -22,14 +22,11 @@ udp_rx_callback(struct simple_udp_connection *c,
 		LOG_INFO("TREC: received response '%.*s' from ", datalen - 2, (char *)pck->payload);
 		LOG_INFO_6ADDR(sender_addr);
 		LOG_INFO(" with seq number %u", pck->seq);
-		printf("\n");
 	}
 	else 
 	{
 		LOG_INFO("TREC: received ack package %u from ", pck->seq);
 		LOG_INFO_6ADDR(sender_addr);
-		printf("\n");
-
 	}
 }
 
@@ -39,19 +36,19 @@ PROCESS_THREAD(transmitter_udp_connect, ev, data)
 
 	PROCESS_BEGIN();
 
-	etimer_set(&timer, CLOCK_SECOND * 2);
+	etimer_set(&timer, CLOCK_SECOND * 5);
 
 	LOG_INFO("TUDPC: Establishing UDP Connection\n");
 	rx_count = 0;
 
-	simple_udp_register(&udp_conn, UDP_CLIENT_PORT, NULL,
-						UDP_SERVER_PORT, udp_rx_callback);
 	while (1)
 	{
 		PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer));
 		if (NETSTACK_ROUTING.node_is_reachable() &&
 			NETSTACK_ROUTING.get_root_ipaddr(&dest_ipaddr))
 		{
+			simple_udp_register(&udp_conn, UDP_CLIENT_PORT, &dest_ipaddr,
+			UDP_SERVER_PORT, udp_rx_callback);
 			LOG_INFO("TUDPC: Established a connection\n");
 			udp_connection_established = true;
 

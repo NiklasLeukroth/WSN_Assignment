@@ -1,3 +1,4 @@
+#define ZOUL_CONF_USE_CC1200_RADIO 0
 
 #include "transmitter/transmit_process.c"
 #include "transmitter/transmitter_udp_connect.c"
@@ -17,7 +18,7 @@ PROCESS_THREAD(transmitter, ev, data)
 
 	PROCESS_BEGIN();
 
-	etimer_set(&timer, CLOCK_SECOND * 5);
+	etimer_set(&timer, CLOCK_SECOND * 1);
 
 	LOG_INFO("MAIN: Started the transmitter node\n");
 
