@@ -1,5 +1,6 @@
 #include "contiki.h"
 #include "net/ipv6/simple-udp.h"
+#include "../src/wsn_global.h"
 
 static uint32_t rx_count;
 static struct simple_udp_connection udp_conn;
