@@ -1,4 +1,3 @@
-#define ZOUL_CONF_USE_CC1200_RADIO 0
 
 #include "transmitter/transmit_process.c"
 #include "transmitter/transmitter_udp_connect.c"
@@ -24,6 +23,8 @@ PROCESS_THREAD(transmitter, ev, data)
 
 	static char seq = 0;
 
+	init_print_full_log();
+
 	while (1)
 	{
 		/* Wait for the periodic timer to expire and then restart the timer. */
@@ -35,6 +36,7 @@ PROCESS_THREAD(transmitter, ev, data)
 			pck->seq = seq;
 			snprintf(pck->payload, sizeof(pck->payload), "hello");
 			LOG_INFO("MAIN: Start sending process\n");
+			print_full_log(pck, sizeof(data_package), clock_time());
 			process_start(&transmit_process, pck);
 			seq += 1;
 		}
