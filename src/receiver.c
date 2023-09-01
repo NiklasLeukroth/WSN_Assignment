@@ -3,8 +3,8 @@
 #include "wsn_global.h"
 
 // communication
-#define RECEIVER_PORT	8765
-#define SENDER_PORT	5678
+#define REMOTE_PORT	8765
+#define LOCAL_PORT	5678
 static struct simple_udp_connection udp_conn;
 
 PROCESS(receiver_process, "receiver process");
@@ -22,10 +22,10 @@ static void udp_rx_callback(struct simple_udp_connection *c,
   LOG_INFO_6ADDR(sender_addr);
 
   if (pck->ack == 0x00) {
-    print_full_log(pck, datalen, -1);
-
     short_package acknowlegement = {0xFF, pck->seq};
     simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
+
+    print_full_log(pck, datalen, -1);
   }
 }
 
@@ -40,9 +40,10 @@ PROCESS_THREAD(receiver_process, ev, data)
 
   init_print_full_log();
   do {
-    simple_udp_register(&udp_conn, SENDER_PORT, NULL, RECEIVER_PORT, udp_rx_callback);
+    simple_udp_register(&udp_conn, LOCAL_PORT, NULL, REMOTE_PORT, udp_rx_callback);
+
+    LOG_INFO("######## registered ...");
   } while (!NETSTACK_ROUTING.node_is_reachable());
-  LOG_INFO("registered UDP connection\n");
 
   PROCESS_END();
 }
