@@ -3,8 +3,8 @@
 #include "wsn_global.h"
 
 // communication
-#define REMOTE_PORT	8765
-#define LOCAL_PORT	5678
+#define REMOTE_PORT	8765+1
+#define LOCAL_PORT	5678+1
 static struct simple_udp_connection udp_conn;
 
 PROCESS(receiver_process, "receiver process");
@@ -19,7 +19,6 @@ static void udp_rx_callback(struct simple_udp_connection *c,
          uint16_t datalen)
 {
   data_package *pck = (data_package *) data;
-  LOG_INFO_6ADDR(sender_addr);
 
   if (pck->ack == 0x00) {
     short_package acknowlegement = {0xFF, pck->seq};
