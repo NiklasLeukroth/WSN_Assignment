@@ -16,6 +16,7 @@ udp_rx_callback(struct simple_udp_connection *c,
 				const uint8_t *data,
 				uint16_t datalen)
 {
+	dropped_counter = 0;
 	data_package * pck = (data_package *)data;
 	if(pck->ack == 0x00)
 	{

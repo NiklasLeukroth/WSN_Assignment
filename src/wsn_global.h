@@ -14,6 +14,8 @@
 
 #define PACKAGE_PAYLOAD_LENGTH 30
 
+int dropped_counter = 0; 
+
 typedef struct _data_package {
   char ack;
   char seq;
