@@ -38,7 +38,6 @@ static void udp_tc_callback(struct simple_udp_connection *c,
     else if(pck->ack == 0xFF)
     {
         simple_udp_sendto(&udp_conn_transmitter, pck, datalen, &transmitter_address);
-        printf("received ack yay\n");
         print_full_log(pck, datalen, -1);
     }
     else
