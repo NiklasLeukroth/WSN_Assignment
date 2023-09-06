@@ -3,7 +3,7 @@
 clear
 
 if [ "$2" == "log" ]; then
-    sudo make TARGET=zoul BOARD=remote-revb $1.upload login > ./logs/s$3_v$4_$1.log
+    sudo make TARGET=zoul BOARD=remote-revb $1.upload login > ./logs/s$3_v$4_$1.csv
 else
     sudo make $2 TARGET=zoul BOARD=remote-revb $1.upload login
 fi
