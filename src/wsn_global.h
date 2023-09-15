@@ -6,11 +6,9 @@
 #define LOG_MODULE "App"
 #define LOG_LEVEL LOG_LEVEL_INFO
 
-#define ZOUL_CONF_USE_CC1200_RADIO 0
+#include "radio/cc1200/cc1200.c"
 
-#include "net/routing/routing.h"
-#include "net/netstack.h"
-#include "net/ipv6/simple-udp.h"
+radio_driver wsn_radio = cc1200_driver;
 
 #define PACKAGE_PAYLOAD_LENGTH 30
 
@@ -43,15 +41,15 @@ void init_print_full_log() {
 
 void print_full_log(data_package *pkg, uint16_t datalen, long timestamp) {
   radio_value_t rssi, lqi;
-  if (timestamp == -1 && NETSTACK_RADIO.get_object(RADIO_PARAM_LAST_PACKET_TIMESTAMP, &timestamp, sizeof(long)) != RADIO_RESULT_OK) {
+  if (timestamp == -1 && wsn_radio.get_object(RADIO_PARAM_LAST_PACKET_TIMESTAMP, &timestamp, sizeof(long)) != RADIO_RESULT_OK) {
     timestamp = 0xFFFF;
   }
 
-  if (NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_RSSI, &rssi) != RADIO_RESULT_OK) {
+  if (wsn_radio.get_value(RADIO_PARAM_LAST_RSSI, &rssi) != RADIO_RESULT_OK) {
     rssi = 0xFFFF;
   }
 
-  if (NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_LINK_QUALITY, &lqi) != RADIO_RESULT_OK) {
+  if (wsn_radio.get_value(RADIO_PARAM_LAST_LINK_QUALITY, &lqi) != RADIO_RESULT_OK) {
     lqi = 0xFFFF;
   }
 
