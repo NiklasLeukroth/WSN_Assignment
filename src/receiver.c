@@ -82,6 +82,7 @@ PROCESS_THREAD(receiver_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&receiver_timeout));
 
     if (!NETSTACK_ROUTING.node_is_reachable()) {
+      LOG_INFO("Lost connection. Reestablishing ...");
       process_start(&receiver_connect, NULL);
     }
 
