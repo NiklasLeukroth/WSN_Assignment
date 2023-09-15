@@ -114,7 +114,7 @@ uint16_t *radio_tsch_timeslot_timing(void);
  * @{
  */
 #ifndef ZOUL_CONF_USE_CC1200_RADIO
-#define ZOUL_CONF_USE_CC1200_RADIO 0
+#define ZOUL_CONF_USE_CC1200_RADIO 1
 #endif
 
 #if ZOUL_CONF_USE_CC1200_RADIO
