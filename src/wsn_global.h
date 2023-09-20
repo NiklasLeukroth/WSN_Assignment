@@ -18,7 +18,7 @@ int dropped_counter = 0;
 
 typedef struct _short_package {
   char ack;
-  unsigned int seq;
+  uint32_t seq;
 } short_package;
 
 typedef struct _data_package {
