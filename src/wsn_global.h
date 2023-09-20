@@ -35,18 +35,18 @@ void print_data_package(data_package *pkg, uint16_t datalen, long timestamp) {
   printf("%ld;%d;%ld;%*.s;", pkg->seq, pkg->ack, timestamp, datalen, pkg->payload);
 }
 
+void print_short_package(short_package *pkg, uint16_t datalen, long timestamp) {
+  printf("%ld;%d;%ld;;", pkg->seq, pkg->ack, timestamp);
+}
+
 void init_print_full_log() {
   init_print_data_package();
   printf("RSSI;LQI");
   printf("\n");
 }
 
-void print_full_log(data_package *pkg, uint16_t datalen, long timestamp) {
+void print_quality_metrics() {
   radio_value_t rssi, lqi;
-  if (timestamp == -1 && NETSTACK_RADIO.get_object(RADIO_PARAM_LAST_PACKET_TIMESTAMP, &timestamp, sizeof(long)) != RADIO_RESULT_OK) {
-    timestamp = 0xFFFF;
-  }
-
   if (NETSTACK_RADIO.get_value(RADIO_PARAM_LAST_RSSI, &rssi) != RADIO_RESULT_OK) {
     rssi = 0xFFFF;
   }
@@ -55,9 +55,28 @@ void print_full_log(data_package *pkg, uint16_t datalen, long timestamp) {
     lqi = 0xFFFF;
   }
 
-  print_data_package(pkg, datalen, timestamp);
-
   printf("%d;%d", rssi, lqi);
+}
+
+void print_full_log(data_package *pkg, uint16_t datalen, long timestamp) {
+  if (timestamp == -1 && NETSTACK_RADIO.get_object(RADIO_PARAM_LAST_PACKET_TIMESTAMP, &timestamp, sizeof(long)) != RADIO_RESULT_OK) {
+    timestamp = 0xFFFF;
+  }
+
+  print_data_package(pkg, datalen, timestamp);
+  print_quality_metrics();
+
+  printf("\n");
+}
+
+void print_short_log(short_package *pkg, uint16_t datalen, long timestamp) {
+  if (timestamp == -1 && NETSTACK_RADIO.get_object(RADIO_PARAM_LAST_PACKET_TIMESTAMP, &timestamp, sizeof(long)) != RADIO_RESULT_OK) {
+    timestamp = 0xFFFF;
+  }
+
+  print_short_package(pkg, datalen, timestamp);
+  print_quality_metrics();
+
   printf("\n");
 }
 
