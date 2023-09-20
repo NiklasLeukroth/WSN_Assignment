@@ -9,7 +9,7 @@ static struct simple_udp_connection udp_conn;
 
 PROCESS(receiver_process, "receiver process");
 PROCESS(receiver_connect, "receiver connect process");
-AUTOSTART_PROCESSES(&receiver_process);
+AUTOSTART_PROCESSES(&receiver_connect);
 
 struct etimer receiver_timeout;
 
@@ -33,16 +33,11 @@ static void udp_rx_callback(struct simple_udp_connection *c,
   }
 }
 
-bool connected_to_transceiver = false;
-bool connecting_to_transceiver = false;
-
 PROCESS_THREAD(receiver_connect, ev, data)
 {
   static struct etimer periodic_timer;
 
   PROCESS_BEGIN();
-
-  connecting_to_transceiver = true;
 
   uip_ipaddr_t root_ip;
   etimer_set(&periodic_timer, 2*CLOCK_SECOND);
@@ -63,13 +58,16 @@ PROCESS_THREAD(receiver_connect, ev, data)
     etimer_reset(&periodic_timer);
   }
 
-  connected_to_transceiver = true;
-  connecting_to_transceiver = false;
-
   LOG_INFO("######## registered ...\n");
   LOG_INFO("root_ip ");
   LOG_INFO_6ADDR(&root_ip);
   LOG_INFO("\n");
+
+  short_package hello_pkg = {0x00, (char) -1};
+  simple_udp_send(&udp_conn, &hello_pkg, 2);
+  etimer_set(&receiver_timeout, 2*CLOCK_SECOND);
+
+  init_print_full_log();
 
   PROCESS_END();
 }
@@ -79,30 +77,20 @@ PROCESS_THREAD(receiver_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  process_start(&receiver_connect, NULL);
+  // while (true)
+  // {
+  //   PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&receiver_timeout));
 
-  PROCESS_WAIT_UNTIL(connected_to_transceiver);
+  //   if (!NETSTACK_ROUTING.node_is_reachable()) {
+  //     connected_to_transceiver = false;
+  //     LOG_INFO("Lost connection. Reestablishing ...");
+  //     if (!connecting_to_transceiver) {
+  //       process_start(&receiver_connect, NULL);
+  //     }
+  //   }
 
-  short_package hello_pkg = {0x00, (char) -1};
-  simple_udp_send(&udp_conn, &hello_pkg, 2);
-  etimer_set(&receiver_timeout, 2*CLOCK_SECOND);
-
-  init_print_full_log();
-
-  while (true)
-  {
-    PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&receiver_timeout));
-
-    if (!NETSTACK_ROUTING.node_is_reachable()) {
-      connected_to_transceiver = false;
-      LOG_INFO("Lost connection. Reestablishing ...");
-      if (!connecting_to_transceiver) {
-        process_start(&receiver_connect, NULL);
-      }
-    }
-
-    etimer_reset(&receiver_timeout);
-  }
+  //   etimer_reset(&receiver_timeout);
+  // }
   
   
   PROCESS_END();
