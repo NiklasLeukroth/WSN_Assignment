@@ -33,17 +33,24 @@ static void udp_rx_callback(struct simple_udp_connection *c,
   }
 }
 
+bool connected_to_transceiver = false;
+bool connecting_to_transceiver = false;
+
 PROCESS_THREAD(receiver_connect, ev, data)
 {
   static struct etimer periodic_timer;
 
   PROCESS_BEGIN();
 
+  connecting_to_transceiver = true;
+
   uip_ipaddr_t root_ip;
   etimer_set(&periodic_timer, 2*CLOCK_SECOND);
 
   while (true) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&periodic_timer));
+
+    LOG_INFO("searching for connection ...");
 
     if (NETSTACK_ROUTING.node_is_reachable() && NETSTACK_ROUTING.get_root_ipaddr(&root_ip)) {
 
@@ -55,6 +62,9 @@ PROCESS_THREAD(receiver_connect, ev, data)
 
     etimer_reset(&periodic_timer);
   }
+
+  connected_to_transceiver = true;
+  connecting_to_transceiver = false;
 
   LOG_INFO("######## registered ...\n");
   LOG_INFO("root_ip ");
@@ -71,6 +81,8 @@ PROCESS_THREAD(receiver_process, ev, data)
 
   process_start(&receiver_connect, NULL);
 
+  PROCESS_WAIT_UNTIL(connected_to_transceiver);
+
   short_package hello_pkg = {0x00, (char) -1};
   simple_udp_send(&udp_conn, &hello_pkg, 2);
   etimer_set(&receiver_timeout, 2*CLOCK_SECOND);
@@ -82,8 +94,11 @@ PROCESS_THREAD(receiver_process, ev, data)
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&receiver_timeout));
 
     if (!NETSTACK_ROUTING.node_is_reachable()) {
+      connected_to_transceiver = false;
       LOG_INFO("Lost connection. Reestablishing ...");
-      process_start(&receiver_connect, NULL);
+      if (!connecting_to_transceiver) {
+        process_start(&receiver_connect, NULL);
+      }
     }
 
     etimer_reset(&receiver_timeout);
