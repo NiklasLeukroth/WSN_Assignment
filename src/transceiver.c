@@ -19,7 +19,7 @@ static void udp_tc_callback(struct simple_udp_connection *c,
 {
     data_package *pck = (data_package *) data;
 
-    if (pck->seq == (char)-1)
+    if (pck->seq == (char)0)
     {
         printf("connected\n");
         receiver_address = *sender_addr;
