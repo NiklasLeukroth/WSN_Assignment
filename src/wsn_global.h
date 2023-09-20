@@ -4,7 +4,7 @@
 // just for logging / printing
 #include "sys/log.h"
 #define LOG_MODULE "App"
-#define LOG_LEVEL LOG_LEVEL_INFO
+#define LOG_LEVEL LOG_LEVEL_NONE
 
 #define ZOUL_CONF_USE_CC1200_RADIO 0
 
