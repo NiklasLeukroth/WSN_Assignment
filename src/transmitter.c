@@ -21,7 +21,7 @@ PROCESS_THREAD(transmitter, ev, data)
 
 	LOG_INFO("MAIN: Started the transmitter node\n");
 
-	static char seq = 0;
+	static uint32_t seq = 1;
 
 	init_print_full_log();
 
