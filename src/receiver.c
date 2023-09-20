@@ -63,7 +63,7 @@ PROCESS_THREAD(receiver_connect, ev, data)
   LOG_INFO_6ADDR(&root_ip);
   LOG_INFO("\n");
 
-  short_package hello_pkg = {0x00, (char) -1};
+  short_package hello_pkg = {0x00, 0};
   simple_udp_send(&udp_conn, &hello_pkg, 2);
   etimer_set(&receiver_timeout, 2*CLOCK_SECOND);
 

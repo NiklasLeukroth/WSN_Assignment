@@ -14,25 +14,25 @@
 
 #define PACKAGE_PAYLOAD_LENGTH 30
 
-int dropped_counter = 0; 
-
-typedef struct _data_package {
-  char ack;
-  char seq;
-  char payload[PACKAGE_PAYLOAD_LENGTH];
-} data_package;
+int dropped_counter = 0;
 
 typedef struct _short_package {
   char ack;
-  char seq;
+  unsigned int seq;
 } short_package;
+
+typedef struct _data_package {
+  char ack;
+  uint32_t seq;
+  char payload[PACKAGE_PAYLOAD_LENGTH];
+} data_package;
 
 void init_print_data_package(){
   printf("SEQ;ACK;TIMESTAMP;PAYLOAD;");
 }
 
 void print_data_package(data_package *pkg, uint16_t datalen, long timestamp) {
-  printf("%d;%d;%ld;%*.s;", pkg->seq, pkg->ack, timestamp, datalen, pkg->payload);
+  printf("%ld;%d;%ld;%*.s;", pkg->seq, pkg->ack, timestamp, datalen, pkg->payload);
 }
 
 void init_print_full_log() {
