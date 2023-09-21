@@ -32,7 +32,7 @@ static void udp_tc_callback(struct simple_udp_connection *c,
         transmitter_address = *sender_addr;
         short_package acknowlegement = {0xF0, pck->seq};
         simple_udp_sendto(&udp_conn_transmitter, &acknowlegement, 5, &transmitter_address);
-        printf("%d", datalen);
+        // printf("%d", datalen);
         print_short_log(&acknowlegement, 5, clock_time());
         simple_udp_sendto(&udp_conn_receiver, pck, datalen, &receiver_address);
         print_full_log(pck, datalen, clock_time());
