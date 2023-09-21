@@ -27,9 +27,9 @@ static void udp_rx_callback(struct simple_udp_connection *c,
 
   if (pck->ack == 0x00) {
     short_package acknowlegement = {0xFF, pck->seq};
-    simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
-
     print_full_log(pck, datalen, -1);
+    simple_udp_sendto(&udp_conn, &acknowlegement, 2, sender_addr);
+    print_short_log(&acknowlegement, 2, -1);
   }
 }
 
