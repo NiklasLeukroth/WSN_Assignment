@@ -12,7 +12,7 @@
 #include "net/netstack.h"
 #include "net/ipv6/simple-udp.h"
 
-#define PACKAGE_PAYLOAD_LENGTH 10
+#define PACKAGE_PAYLOAD_LENGTH 40
 
 int dropped_counter = 0;
 
