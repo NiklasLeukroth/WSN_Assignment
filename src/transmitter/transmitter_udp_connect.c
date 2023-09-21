@@ -24,13 +24,13 @@ udp_rx_callback(struct simple_udp_connection *c,
 		LOG_INFO_6ADDR(sender_addr);
 		LOG_INFO(" with seq number %lu", pck->seq);
 
-		print_full_log(pck, datalen, -1);
+		print_full_log(pck, datalen, clock_time());
 	}
 	else 
 	{
 		LOG_INFO("TREC: received ack package %lu from ", pck->seq);
 		LOG_INFO_6ADDR(sender_addr);
-		print_full_log(pck, datalen, -1);
+		print_full_log(pck, datalen, clock_time());
 	}
 }
 
