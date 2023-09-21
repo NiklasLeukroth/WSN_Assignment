@@ -12,7 +12,7 @@
 #include "net/netstack.h"
 #include "net/ipv6/simple-udp.h"
 
-#define PACKAGE_PAYLOAD_LENGTH 30
+#define PACKAGE_PAYLOAD_LENGTH 10
 
 int dropped_counter = 0;
 
@@ -32,7 +32,7 @@ void init_print_data_package(){
 }
 
 void print_data_package(data_package *pkg, uint16_t datalen, long timestamp) {
-  printf("%ld;%d;%ld;%*.s;", pkg->seq, pkg->ack, timestamp, datalen, pkg->payload);
+  printf("%ld;%d;%ld;%*.s;", pkg->seq, pkg->ack, timestamp, sizeof(pkg->payload), pkg->payload);
 }
 
 void print_short_package(short_package *pkg, uint16_t datalen, long timestamp) {
