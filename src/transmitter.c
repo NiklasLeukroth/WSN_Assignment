@@ -7,6 +7,16 @@
 #include <stdlib.h>
 
 
+void generate_random_msg(char msg[PACKAGE_PAYLOAD_LENGTH])
+{
+	for(int i = 0; i < PACKAGE_PAYLOAD_LENGTH - 1; i++)
+	{
+		msg[i] = 'A' + (rand() % 26);
+	}
+	msg[PACKAGE_PAYLOAD_LENGTH - 1] = '\0';
+}
+
+
 /*---------------------------------------------------------------------------*/
 PROCESS(transmitter, "transmitter");
 AUTOSTART_PROCESSES(&transmitter, &transmitter_udp_connect);
@@ -21,7 +31,7 @@ PROCESS_THREAD(transmitter, ev, data)
 
 	LOG_INFO("MAIN: Started the transmitter node\n");
 
-	static char seq = 0;
+	static uint32_t seq = 1;
 
 	init_print_full_log();
 
@@ -40,7 +50,8 @@ PROCESS_THREAD(transmitter, ev, data)
 			data_package * pck = (data_package *)malloc(sizeof(data_package));
 			pck->ack = 0x00;
 			pck->seq = seq;
-			snprintf(pck->payload, sizeof(pck->payload), "hello");
+			generate_random_msg(pck->payload);
+			// snprintf(pck->payload, sizeof(pck->payload), message);
 			LOG_INFO("MAIN: Start sending process\n");
 			print_full_log(pck, sizeof(data_package), clock_time());
 			process_start(&transmit_process, pck);
