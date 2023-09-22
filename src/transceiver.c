@@ -19,26 +19,29 @@ static void udp_tc_callback(struct simple_udp_connection *c,
 {
     data_package *pck = (data_package *) data;
 
-    if (pck->seq == (char)-1)
+    if (pck->seq == (uint32_t)0)
     {
         printf("connected\n");
         receiver_address = *sender_addr;
         return;
     }
 
-    print_full_log(pck, datalen, -1);
     if (pck->ack == 0x00) 
     {
+        print_full_log(pck, datalen, clock_time());
         transmitter_address = *sender_addr;
         short_package acknowlegement = {0xF0, pck->seq};
-        simple_udp_sendto(&udp_conn_transmitter, &acknowlegement, 2, &transmitter_address);
+        simple_udp_sendto(&udp_conn_transmitter, &acknowlegement, 5, &transmitter_address);
+        // printf("%d", datalen);
+        print_short_log(&acknowlegement, 5, clock_time());
         simple_udp_sendto(&udp_conn_receiver, pck, datalen, &receiver_address);
-        print_full_log(pck, datalen, -1);
+        print_full_log(pck, datalen, clock_time());
     }
     else if(pck->ack == 0xFF)
     {
+        print_short_log((short_package*)pck, datalen, clock_time());
         simple_udp_sendto(&udp_conn_transmitter, pck, datalen, &transmitter_address);
-        print_full_log(pck, datalen, -1);
+        print_short_log((short_package*)pck, datalen, clock_time());
     }
     else
     {
