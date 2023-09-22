@@ -1,0 +1,53 @@
+Flashing /dev/ttyUSB0
+rlwrap ../contiki-ng/tools/serial-io/serialdump -b115200 /dev/ttyUSB0
+[INFO: Main      ] Starting Contiki-NG
+[INFO: Main      ] - Routing: RPL Lite
+[INFO: Main      ] - Net: sicslowpan
+[INFO: Main      ] - MAC: CSMA
+[INFO: Main      ] - 802.15.4 PANID: 0xabcd
+[INFO: Main      ] - 802.15.4 Default channel: 26
+[INFO: Main      ] Node ID: 20870
+[INFO: Main      ] Link-layer address: 0012.4b00.194a.5186
+[INFO: Main      ] Tentative link-local IPv6 address: fe80::212:4b00:194a:5186
+[INFO: Zoul      ] Zolertia RE-Mote revision B platform
+SEQ;ACK;TIMESTAMP;PAYLOAD;RSSI;LQI
+1;0;2554; LVQDYOQYKFDBXNQDQUHYDJAEEBZQMTBLCABWGMS;-93;100
+1;240;2561;                                        ;-79;107
+2;0;2682; CRNOIAFTLFPCUQFFAXOZQEGXMWGGLKHVXTDHNZQ;-79;107
+2;240;2691;                                        ;-76;108
+3;0;2810; ANKYPRBWTEAZDAFEQXTIJJTKWEAZQGMPLOHYXRU;-75;106
+3;240;2812;                                        ;-77;105
+4;0;2938; TOJVBZLLQGJAIDBTQIBYGDZCXKUJVWGHWBMJJMB;-77;105
+4;240;2947;                                        ;-81;107
+5;0;3066; PKSNZKGZGILUIGGPKZWHAETCLRCYXCSIXSUTJMR;-81;107
+5;240;3068;                                        ;-78;108
+6;0;3194; MVQLYBSJNIHNFQYFHYSZWGPSVNHNNGDNJZJYPQC;-78;108
+6;240;3196;                                        ;-85;108
+7;0;3322; FLNZTRHCFGBKAKZXAMALSUAUXXCHQJXQAIDDTJS;-85;108
+7;240;3331;                                        ;-77;108
+8;0;3450; ZGCBULLYYJYMYTIOYAWPZSHHFPQPSATDDBCAGJG;-77;108
+8;240;3456;                                        ;-75;107
+9;0;3578; OBMNZVHKOXRLAMUZLTTSAXOAQBTHXAMSDVMVKZG;-75;107
+9;240;3583;                                        ;-75;108
+10;0;3706; GHTZBFOVGLVLTLWSZXFSGZSBJMOCFDAMJYMXDBD;-75;108
+10;240;3717;                                        ;-76;107
+11;0;3834; UZSITVADWJAYLIEZMPPATSRAJUKOTQIOLUAHOAU;-76;107
+11;240;3842;                                        ;-72;107
+12;0;3962; IEMXNRTGPWGAUKURFVTOIIZBJETJNXRQLHOIOLX;-72;107
+12;240;3964;                                        ;-77;107
+13;0;4090; QTGGJKMWICIXNDHETYCWWNSLCHFRNKRNEAUEEWQ;-77;107
+13;240;4098;                                        ;-85;102
+14;0;4218; KMCVXGVVKRRXUWOOBILAWWSITFCECYNBIYWBRAK;-85;102
+14;240;4223;                                        ;-76;108
+15;0;4346; DMKBJTEIQRNSJBLPAXYCERDOGQIJSABHFMWTONB;-76;108
+15;240;4352;                                        ;-74;108
+16;0;4474; XCZMCNRWJFEAEUPROHQYOGUMMQIJGIFMIBTGCYP;-74;108
+16;240;4485;                                        ;-72;107
+17;0;4602; NJMBMTEIHPFNBKLFTKFAYIXENFXZXGBRUVAOTGE;-72;107
+17;240;4610;                                        ;-69;107
+18;0;4730; OMSPWQROHDBZXCUKNVKKLMGYLFFOSBZTHLLLFGB;-69;107
+18;240;4738;                                        ;-75;107
+19;0;4858; BZTFTRNNSWEEXMBCGBDCBRDAOXEYLIHBLMOFIYF;-75;107
+19;240;4865;                                        ;-80;106
+20;0;4986; YKGLGQJYYLKSASXEZTVVJJZITPWLKPVRQFYLSGE;-80;106
+20;240;4993;                                        ;-76;108
