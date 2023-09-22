@@ -1,19 +1,4 @@
-Running serialdump without rlwrap support.
-Consider installing rlwarp in order to be able to use command history
-Flashing /dev/ttyUSB0
-../contiki-ng/tools/serial-io/serialdump -b115200 /dev/ttyUSB0
-[INFO: Main      ] Starting Contiki-NG
-[INFO: Main      ] - Routing: RPL Lite
-[INFO: Main      ] - Net: sicslowpan
-[INFO: Main      ] - MAC: CSMA
-[INFO: Main      ] - 802.15.4 PANID: 0xabcd
-[INFO: Main      ] - 802.15.4 Default channel: 26
-[INFO: Main      ] Node ID: 20967
-[INFO: Main      ] Link-layer address: 0012.4b00.194a.51e7
-[INFO: Main      ] Tentative link-local IPv6 address: fe80::212:4b00:194a:51e7
-[INFO: Zoul      ] Zolertia RE-Mote revision B platform
 SEQ;ACK;TIMESTAMP;PAYLOAD;RSSI;LQI
-connected
 1;0;40015;LVQDYOQYKFDBXNQDQUHYDJAEEBZQMTBLCABWGMS;-91;107
 1;240;40016;;-91;107
 1;0;40016;LVQDYOQYKFDBXNQDQUHYDJAEEBZQMTBLCABWGMS;-91;107
