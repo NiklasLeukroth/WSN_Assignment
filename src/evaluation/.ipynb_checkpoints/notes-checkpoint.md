@@ -1,7 +1,7 @@
 # Scenario 1
 
 - [x] payload length (2, 3) + (5, 6): s1_PLL.svg
-- [ ] moving role (1, 2)
+- [x] moving role (1, 2)
 - [ ] radius (3, 5) + (2, 6)
 - [ ] velocity (3, 4)
 
