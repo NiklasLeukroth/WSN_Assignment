@@ -14,7 +14,7 @@
 
 # Comparison 1-2
 
-- [ ] radius - outer radius (2.5, 1.3)
+- [x] radius - outer radius (2.5, 1.3): comp_RTT.svg
 - [ ] hops (1.5, 2.2) + (1.6, 2.1)
 
 # Sections
