@@ -1,13 +1,13 @@
 # Scenario 1
 
 - [x] payload length (2, 3) + (5, 6): s1_PLL.svg
-- [x] moving role (1, 2)
-- [x] radius (3, 5) + (2, 6)
-- [x] velocity (3, 4)
+- [x] moving role (1, 2): s1_moving_role.svg
+- [x] radius (3, 5) + (2, 6): s1_radius.svg
+- [x] velocity (3, 4): s1_velocity
 
 # Scenario 2
 
-- [ ] payload length (1, 2)
+- [x] payload length (1, 2): s2_PLL.svg
 - [ ] movement mode (2, 3)
 - [ ] inner radius (3, 4)
 - [ ] RSSI over transmission (2, 3, 4, 5)
