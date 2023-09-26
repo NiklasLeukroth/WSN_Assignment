@@ -14,7 +14,7 @@
 
 # Comparison 1-2
 
-- [ ] hops (2.5, 1.3) +(1.5, 2.2) + (1.6, 2.1): comp_RTT.svg
+- [x] hops (2.5, 1.3) +(1.5, 2.2) + (1.6, 2.1): comp_RTT.svg, comp_RSSI.svg
 
 # Sections
 
