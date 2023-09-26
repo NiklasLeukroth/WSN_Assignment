@@ -8,8 +8,8 @@
 # Scenario 2
 
 - [x] payload length (1, 2): s2_PLL.svg
-- [x] movement mode (2, 3)
-- [ ] inner radius (3, 4)
+- [x] movement mode (2, 3): s2_movement_mode_RSSI_LQI.svg, s2_movement_mode_RTT_var.svg
+- [x] inner radius (3, 4): s2_IR_avg.svg, s2_IR_var.svg
 - [ ] RSSI over transmission (2, 3, 4, 5)
 
 # Comparison 1-2
